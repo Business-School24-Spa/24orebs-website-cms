@@ -1,0 +1,6 @@
+{
+    "id": "cta-field",
+    "name": "CTA Field",
+    "srcdoc": "index.html",
+    "fieldTypes": ["Object"]
+  }
