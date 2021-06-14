@@ -1,0 +1,6 @@
+{
+    "id": "hero-style-field",
+    "name": "Hero style field",
+    "srcdoc": "index.html",
+    "fieldTypes": ["Symbol"]
+  }

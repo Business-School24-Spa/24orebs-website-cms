@@ -1,8 +1,6 @@
 {
-  "id": "cta-field",
-  "name": "cta-field",
-  "srcdoc": "./build/index.html",
-  "fieldTypes": [
-    "Text"
-  ]
-}
+    "id": "cta-field",
+    "name": "CTA Field",
+    "srcdoc": "index.html",
+    "fieldTypes": ["Object"]
+  }
