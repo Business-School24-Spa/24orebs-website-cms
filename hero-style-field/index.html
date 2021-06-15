@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Hero Style</title>
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/contentful-ui-extensions-sdk@3/dist/cf-extension.css">
+  <script src="https://unpkg.com/contentful-ui-extensions-sdk@3"></script>
+</head>
+
+<body>
+  <div class="widget-cta-button">
+    <label for="light">
+      <input type="radio" class="form-control" name="heroStyle" id="light" value="light">
+      Light
+    </label>
+    <label for="dark">
+      <input type="radio" class="form-control" name="heroStyle" id="dark" value="dark">
+      Dark
+    </label>
+  </div>
+  <script type="text/javascript">
+    window.contentfulExtension.init(extension => {
+      const heroStyleRadios = document.getElementsByName("heroStyle");
+
+      for (var i = 0, length = heroStyleRadios.length; i < length; i++) {
+        if (heroStyleRadios[i].checked) {
+          // alert(heroStyleRadios[i].value);
+          break;
+        }
+      }
+      let value = extension.field.getValue() === 'dark' ? 'dark' : 'light'
+      extension.field.onValueChanged(newValue => {
+        value = newValue
+      })
+      extension.field.setValue();
+    });
+  </script>
+</body>
+
+</html>

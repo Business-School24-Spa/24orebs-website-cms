@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>CTA Button</title>
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/contentful-ui-extensions-sdk@3/dist/cf-extension.css">
+  <script src="https://unpkg.com/contentful-ui-extensions-sdk@3"></script>
+</head>
+
+<body>
+  <div class="widget-cta-button">
+    <input type="text" id="CTAText" class="form-control">
+    <input type="text" id="CTALink" class="form-control">
+  </div>
+  <script type="text/javascript">
+    window.contentfulExtension.init(extension => {
+      const CTAText = document.getElementById("CTAText");
+      const CTALink = document.getElementById("CTALink");
+      const value = extension.field.getValue();
+    });
+  </script>
+</body>
+
+</html>
