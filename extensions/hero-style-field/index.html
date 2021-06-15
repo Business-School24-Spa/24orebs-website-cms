@@ -21,18 +21,19 @@
   <script type="text/javascript">
     window.contentfulExtension.init(extension => {
       const heroStyleRadios = document.getElementsByName("heroStyle");
+      let value = extension.field.getValue() === 'dark' ? 'dark' : 'light'
 
       for (var i = 0, length = heroStyleRadios.length; i < length; i++) {
-        if (heroStyleRadios[i].checked) {
-          // alert(heroStyleRadios[i].value);
+        if (heroStyleRadios[i].value === value) {
+          heroStyleRadios[i].checked = true;
           break;
         }
       }
-      let value = extension.field.getValue() === 'dark' ? 'dark' : 'light'
+
       extension.field.onValueChanged(newValue => {
         value = newValue
       })
-      extension.field.setValue();
+      extension.field.setValue(value);
     });
   </script>
 </body>
