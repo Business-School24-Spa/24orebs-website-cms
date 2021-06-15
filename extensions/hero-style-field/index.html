@@ -10,7 +10,7 @@
 <body>
   <div class="widget-cta-button">
     <label for="light">
-      <input type="radio" class="form-control" name="heroStyle" id="light" value="light">
+      <input type="radio" class="form-control" name="heroStyle" id="light" value="light" checked>
       Light
     </label>
     <label for="dark">
@@ -23,17 +23,27 @@
       const heroStyleRadios = document.getElementsByName("heroStyle");
       let value = extension.field.getValue() === 'dark' ? 'dark' : 'light'
 
-      for (var i = 0, length = heroStyleRadios.length; i < length; i++) {
-        if (heroStyleRadios[i].value === value) {
-          heroStyleRadios[i].checked = true;
-          break;
+      function onValueChanged (newVal) {
+        value = newVal;
+
+        for (var i = 0, length = heroStyleRadios.length; i < length; i++) {
+          if (heroStyleRadios[i].value === value) {
+            heroStyleRadios[i].checked = true;
+          } else {
+            heroStyleRadios[i].checked = false;
+          }
         }
+
+        extension.field.setValue(value);
       }
 
-      extension.field.onValueChanged(newValue => {
-        value = newValue
-      })
-      extension.field.setValue(value);
+      for (var i = 0, length = heroStyleRadios.length; i < length; i++) {
+        heroStyleRadios[i].addEventListener('change', (event) => {
+          onValueChanged(event.target.value);
+        })
+      }
+
+      onValueChanged(value);
     });
   </script>
 </body>

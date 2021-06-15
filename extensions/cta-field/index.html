@@ -9,14 +9,39 @@
 
 <body>
   <div class="widget-cta-button">
-    <input type="text" id="CTAText" class="form-control">
-    <input type="text" id="CTALink" class="form-control">
+      <input type="checkbox" name="CTAActive" id="CTAActive" class="form-control">
+      <label id="CTAActiveLabel" for="CTAActive">Attiva bottone CTA</label>
+    <input type="text" style="display: none" name="CTAText" id="CTAText" class="form-control">
+    <input type="text" style="display: none" name="CTALink" id="CTALink" class="form-control">
   </div>
   <script type="text/javascript">
     window.contentfulExtension.init(extension => {
+      const CTAActive = document.getElementById("CTAActive");
+      const CTAActiveLabel = document.getElementById("CTAActiveLabel");
       const CTAText = document.getElementById("CTAText");
       const CTALink = document.getElementById("CTALink");
-      const value = extension.field.getValue();
+      let data = JSON.parse(extension.field.getValue());
+
+      CTAActive.checked = data.CTAActive || false;
+      CTAText.value = data.CTAText || '';
+      CTALink.value = data.CTALink || '';
+
+      console.log("HELLO!!!");
+
+      CTAActive.addEventListener('click', (event) => {
+        alert("HELLO!!!");
+        if (CTAActive.checked === true) {
+          CTAText.style.display = "block";
+          CTALink.style.display = "block";
+          CTAActiveLabel.innerHTML = "Disattiva bottone CTA";
+        } else {
+          CTAText.style.display = "none";
+          CTALink.style.display = "none";
+          CTAActiveLabel.innerHTML = "Attiva bottone CTA";
+        }
+      });
+
+
     });
   </script>
 </body>
