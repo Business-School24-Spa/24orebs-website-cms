@@ -3,45 +3,165 @@
 
 <head>
   <title>CTA Button</title>
-  <link rel="stylesheet" type="text/css" href="https://unpkg.com/contentful-ui-extensions-sdk@3/dist/cf-extension.css">
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
   <script src="https://unpkg.com/contentful-ui-extensions-sdk@3"></script>
+  <script src="https://unpkg.com/@contentful/forma-36-react-components"></script>
+  <style>
+    body { 
+      margin: 0;
+    }
+
+    .flex-column {
+      flex-direction: column;
+    }
+
+    .form-field {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      font-size: 14px;
+      line-height: 24px;
+      color: #6a7889;
+      width: 90%;
+      max-width: 800px;
+    }
+
+    .form-label {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      white-space: pre-wrap;
+      width: 90%;
+      font-size: 14px;
+      line-height: 24px;
+    }
+
+    .form-input-wrapper {
+      display: block;
+      width: 90%;
+    }
+
+    .form-input {
+      display: block;
+      outline: none;
+      -webkit-box-shadow: inset 0 2px 0 rgb(225 228 232 / 20%);
+      box-shadow: inset 0 2px 0 rgb(225 228 232 / 20%);
+      background-color: #fff;
+      border: 1px solid #d3dce0;
+      border-radius: 6px;
+      max-height: 2.5rem;
+      color: #536171;
+      font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+      font-size: .875rem;
+      padding: .65625rem;
+      margin: 0;
+      width: 90%;
+      -webkit-appearance: textfield;
+    }
+  </style>
 </head>
 
 <body>
   <div class="widget-cta-button">
-      <input type="checkbox" name="CTAActive" id="CTAActive" class="form-control">
-      <label id="CTAActiveLabel" for="CTAActive">Attiva bottone CTA</label>
-    <input type="text" style="display: none" name="CTAText" id="CTAText" class="form-control">
-    <input type="text" style="display: none" name="CTALink" id="CTALink" class="form-control">
+    <div class="form-field">
+      <input type="checkbox" name="CTAActive" id="CTAActive">
+      <label id="CTAActiveLabel" class="form-label" for="CTAActive">Active CTA button</label>
+    </div>
+    <div id="CTATextField" style="display: none" class="form-field flex-column">
+      <label class="form-label" for="CTAText">Button text</label>
+      <div class="form-input-wrapper">
+        <input type="text" name="CTAText" id="CTAText" class="form-input">
+      </div>
+    </div>
+    <div id="CTALinkField" style="display: none" class="form-field flex-column">
+      <label class="form-label" for="CTALink">Button link</label>
+      <div class="form-input-wrapper">
+        <input type="text" name="CTALink" id="CTALink" class="form-input">
+      </div>
+    </div>
   </div>
   <script type="text/javascript">
     window.contentfulExtension.init(extension => {
       const CTAActive = document.getElementById("CTAActive");
       const CTAActiveLabel = document.getElementById("CTAActiveLabel");
+      const CTATextField = document.getElementById("CTATextField");
       const CTAText = document.getElementById("CTAText");
+      const CTALinkField = document.getElementById("CTALinkField");
       const CTALink = document.getElementById("CTALink");
-      let data = JSON.parse(extension.field.getValue());
+      let data = {
+        CTAActive: false,
+        CTAText: null,
+        CTALink: null
+      };
+
+      if (extension.field.getValue()) {
+        data = extension.field.getValue();
+      } else {
+        saveField();
+      }
 
       CTAActive.checked = data.CTAActive || false;
-      CTAText.value = data.CTAText || '';
-      CTALink.value = data.CTALink || '';
+      CTAText.value = data.CTAText || null;
+      CTALink.value = data.CTALink || null;
 
-      console.log("HELLO!!!");
+      if (CTAActive.checked === true) {
+        CTATextField.style.display = "flex";
+        CTALinkField.style.display = "flex";
+        CTAText.required = true
+        CTALink.required = true
+      } else {
+        CTATextField.style.display = "none";
+        CTALinkField.style.display = "none";
+        CTAText.required = false
+        CTALink.required = false
+      }
 
-      CTAActive.addEventListener('click', (event) => {
-        alert("HELLO!!!");
-        if (CTAActive.checked === true) {
-          CTAText.style.display = "block";
-          CTALink.style.display = "block";
-          CTAActiveLabel.innerHTML = "Disattiva bottone CTA";
+      CTAActive.addEventListener('change', (event) => {
+        data.CTAActive = event.target.checked;
+        if (event.target.checked === true) {
+          CTATextField.style.display = "flex";
+          CTALinkField.style.display = "flex";
+          CTAText.required = true
+          CTALink.required = true
         } else {
-          CTAText.style.display = "none";
-          CTALink.style.display = "none";
-          CTAActiveLabel.innerHTML = "Attiva bottone CTA";
+          CTATextField.style.display = "none";
+          CTALinkField.style.display = "none";
+          CTAText.required = false
+          CTALink.required = false
         }
+        saveField();
       });
 
+      CTAText.addEventListener('change', (event) => {
+        data.CTAText = event.target.value;
+      });
+      CTAText.addEventListener('blur', (event) => {
+        saveField();
+      })
+      CTALink.addEventListener('change', (event) => {
+        data.CTALink = event.target.value;
+      });
+      CTALink.addEventListener('blur', (event) => {
+        saveField();
+      })
 
+      function saveField () {
+        extension.window.updateHeight();
+        extension.field.setValue(data);
+        if (data.CTAActive === true && (data.CTAText === null || data.CTALink === null)) {
+          extension.field.removeValue();
+          extension.field.setInvalid(true);
+          extension.notifier.error("Se il bottone CTA è attivo, tutti i campi devono essere compilati.");
+          return;
+        }
+        if (data.CTAActive === true && !data.CTALink?.toLowerCase().startsWith("/")) {
+          extension.field.removeValue();
+          extension.field.setInvalid(true);
+          extension.notifier.error("Il campo CTA link non può essere un link esterno, deve iniziare con /");
+          return;
+        }
+        extension.field.setInvalid(false);
+      }
     });
   </script>
 </body>
