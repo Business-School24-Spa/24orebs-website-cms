@@ -5,10 +5,11 @@
   <title>CTA Button</title>
   <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
   <script src="https://unpkg.com/contentful-ui-extensions-sdk@3"></script>
-  <script src="https://unpkg.com/@contentful/forma-36-react-components"></script>
   <style>
     body { 
       margin: 0;
+      padding-bottom: 5px;
+      font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol !important;
     }
 
     .flex-column {
@@ -34,6 +35,7 @@
       width: 90%;
       font-size: 14px;
       line-height: 24px;
+      font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol !important;
     }
 
     .form-input-wrapper {
@@ -51,12 +53,19 @@
       border-radius: 6px;
       max-height: 2.5rem;
       color: #536171;
-      font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol;
+      font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol !important;
       font-size: .875rem;
       padding: .65625rem;
       margin: 0;
       width: 90%;
       -webkit-appearance: textfield;
+    }
+
+    .field-hint {
+      color: #6a7889;
+      margin: .642857142857143em 0;
+      font-style: italic;
+      width: 100%;
     }
   </style>
 </head>
@@ -65,19 +74,21 @@
   <div class="widget-cta-button">
     <div class="form-field">
       <input type="checkbox" name="CTAActive" id="CTAActive">
-      <label id="CTAActiveLabel" class="form-label" for="CTAActive">Active CTA button</label>
+      <label id="CTAActiveLabel" class="form-label" for="CTAActive">La slide richiede un bottone CTA con un link di destinazione</label>
     </div>
     <div id="CTATextField" style="display: none" class="form-field flex-column">
-      <label class="form-label" for="CTAText">Button text</label>
+      <label class="form-label" for="CTAText">Testo bottone CTA</label>
       <div class="form-input-wrapper">
         <input type="text" name="CTAText" id="CTAText" class="form-input">
       </div>
+      <div class="field-hint">Non superare i 20 caratteri per mantenere una visualizzazione ordinata su tutti i dispositivi</div>
     </div>
     <div id="CTALinkField" style="display: none" class="form-field flex-column">
-      <label class="form-label" for="CTALink">Button link</label>
+      <label class="form-label" for="CTALink">Destinazione interna</label>
       <div class="form-input-wrapper">
         <input type="text" name="CTALink" id="CTALink" class="form-input">
       </div>
+      <div class="field-hint">Inserire l'indirizzo URL di destinazione al click interno al sito (omettere in questo campo la prima parte del’URL https://www.24orebs.com ). Il link di destinazione deve iniziare con '/'</div>
     </div>
   </div>
   <script type="text/javascript">
@@ -115,6 +126,8 @@
         CTAText.required = false
         CTALink.required = false
       }
+
+      extension.window.updateHeight();
 
       CTAActive.addEventListener('change', (event) => {
         data.CTAActive = event.target.checked;
