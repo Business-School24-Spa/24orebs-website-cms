@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Slug</title>
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/contentful-ui-extensions-sdk@3/dist/cf-extension.css">
+  <script src="https://unpkg.com/contentful-ui-extensions-sdk@3"></script>
+  <style>
+    body { 
+      margin: 0;
+      padding-bottom: 5px;
+      font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol !important;
+    }
+
+    .widget-cta-button {
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .form-label {
+      font-size: 14px;
+      line-height: 1.5;
+      font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol !important;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="widget-cta-button">
+    <input type="radio" class="form-control" name="heroStyle" id="light" value="light" checked>
+    <label class="form-label" for="light">
+      Testo nero su immagine di sfondo bianca o prevalentemente chiara
+    </label>
+    <input type="radio" class="form-control" name="heroStyle" id="dark" value="dark">
+    <label class="form-label" for="dark">
+      Testo bianco su immagine di sfondo nera o prevalentemente scura
+    </label>
+  </div>
+  <script type="text/javascript">
+    window.contentfulExtension.init(extension => {
+      // const heroStyleRadios = document.getElementsByName("heroStyle");
+      // let value = extension.field.getValue() === 'dark' ? 'dark' : 'light';
+
+      // extension.window.updateHeight();
+
+      console.log("extension", extension);
+
+      // function onValueChanged (newVal) {
+      //   value = newVal;
+
+      //   for (var i = 0, length = heroStyleRadios.length; i < length; i++) {
+      //     if (heroStyleRadios[i].value === value) {
+      //       heroStyleRadios[i].checked = true;
+      //     } else {
+      //       heroStyleRadios[i].checked = false;
+      //     }
+      //   }
+
+      //   extension.field.setValue(value);
+      // }
+
+      // for (var i = 0, length = heroStyleRadios.length; i < length; i++) {
+      //   heroStyleRadios[i].addEventListener('change', (event) => {
+      //     onValueChanged(event.target.value);
+      //   })
+      // }
+
+      // onValueChanged(value);
+    });
+  </script>
+</body>
+
+</html>
