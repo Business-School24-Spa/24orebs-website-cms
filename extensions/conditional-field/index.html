@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Conditional</title>
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/contentful-ui-extensions-sdk@3/dist/cf-extension.css">
+  <script src="https://unpkg.com/contentful-ui-extensions-sdk@3"></script>
+  <style>
+    body { 
+      margin: 0;
+      padding-bottom: 5px;
+      font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol !important;
+    }
+
+    .container {
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .form-input-wrapper {
+      display: block;
+      width: 90%;
+    }
+
+    .form-input {
+      display: block;
+      outline: none;
+      -webkit-box-shadow: inset 0 2px 0 rgb(225 228 232 / 20%);
+      box-shadow: inset 0 2px 0 rgb(225 228 232 / 20%);
+      background-color: #fff;
+      border: 1px solid #d3dce0;
+      border-radius: 6px;
+      max-height: 2.5rem;
+      color: #536171;
+      font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol !important;
+      font-size: .875rem;
+      padding: .65625rem;
+      margin: 0;
+      width: 90%;
+      -webkit-appearance: textfield;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- <div class="container">
+    <div class="form-input-wrapper">
+      <input id="slugField" name="slug" value='' class="form-input"/>
+    </div>
+  </div> -->
+  <script type="text/javascript">
+    window.contentfulExtension.init(sdk => {
+      console.log("sdk: ", sdk);
+    });
+  </script>
+</body>
+
+</html>
