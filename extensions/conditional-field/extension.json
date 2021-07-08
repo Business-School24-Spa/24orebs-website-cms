@@ -2,5 +2,33 @@
   "id": "conditional-field",
   "name": "Conditional field",
   "srcdoc": "index.html",
-  "fieldTypes": ["Symbol"]
+  "fieldTypes": ["Symbol"],
+  "parameters": {
+    "instance": [
+      {
+        "id": "field",
+        "name": "Se questo campo",
+        "description": "Esempio: title",
+        "type": "Symbol",
+        "required": true,
+        "default": ""
+      },
+      {
+        "id": "operator",
+        "name": "è",
+        "description": "Esempio: ==, !=",
+        "type": "Symbol",
+        "required": true,
+        "default": "=="
+      },
+      {
+        "id": "value",
+        "name": "a",
+        "description": "Esempio: true, 'red'",
+        "type": "Symbol",
+        "required": true,
+        "default": ""
+      }
+    ]
+  }
 }
