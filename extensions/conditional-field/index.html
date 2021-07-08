@@ -52,6 +52,8 @@
     window.contentfulExtension.init(sdk => {
       const conditionalField = document.getElementById("conditionalField");
 
+      let debounceInterval = 0;
+
       if (sdk.field.getValue()) {
         conditionalField.value = sdk.field.getValue();
       }
@@ -59,7 +61,68 @@
       const instance = sdk.parameters.instance;
       const { field, operator, value } = instance;
 
-      
+      const updateFieldValue = async (locale) => {
+
+        const defaultLocale = sdk.locales.default;
+        let raw = null;
+
+        if (sdk.entry.fields[field] !== undefined) {
+          if (sdk.entry.fields[field].locales.includes(locale)) {
+            raw = sdk.entry.fields[field].getValue(locale) || '';
+          } else {
+            raw = sdk.entry.fields[field].getValue(defaultLocale) || '';
+          }
+        }
+
+        if (operator === "==") {
+          if (raw.toLowerCase() == value.toLowerCase()) {
+            showField();
+            sdk.field.setValue("00:00");
+          } else {
+            hideField();
+            sdk.field.removeValue();
+          }
+        }
+        
+        if (operator === "!=") {
+          if (raw.toLowerCase() != value.toLowerCase()) {
+            showField();
+            sdk.field.setValue("00:00");
+          } else {
+            hideField();
+            sdk.field.removeValue();
+          }
+        }
+      }
+
+      const hideField = () => {
+        conditionalField.style.display = "none";
+        sdk.window.updateHeight();
+      }
+      const showField = () => {
+        conditionalField.style.display = "block";
+        sdk.window.updateHeight();
+      }
+
+      hideField();
+
+      if (Object.prototype.hasOwnProperty.call(sdk.entry.fields, field)) {
+        const locales = sdk.entry.fields[field].locales;
+
+        locales.forEach((locale) => {
+          sdk.entry.fields[field].onValueChanged(locale, () => {
+            if (debounceInterval) {
+              clearInterval(debounceInterval);
+            }
+            // eslint-disable-next-line react-hooks/exhaustive-deps
+            debounceInterval = window.setTimeout(() => {
+              updateFieldValue(locale);
+            }, 500);
+          });
+        });
+      }
+
+      sdk.window.updateHeight();
     });
   </script>
 </body>
