@@ -77,7 +77,9 @@
         if (operator === "==") {
           if (raw.toLowerCase() == value.toLowerCase()) {
             showField();
-            sdk.field.setValue("00:00");
+            if (!sdk.field.getValue()) {
+              sdk.field.setValue("00:00");
+            }
           } else {
             hideField();
             sdk.field.removeValue();
@@ -87,7 +89,9 @@
         if (operator === "!=") {
           if (raw.toLowerCase() != value.toLowerCase()) {
             showField();
-            sdk.field.setValue("00:00");
+            if (!sdk.field.getValue()) {
+              sdk.field.setValue("00:00");
+            }
           } else {
             hideField();
             sdk.field.removeValue();
@@ -121,6 +125,10 @@
           });
         });
       }
+
+      conditionalField.addEventListener('change', (event) => {
+        sdk.field.setValue(event.target.value);
+      });
 
       sdk.window.updateHeight();
     });
