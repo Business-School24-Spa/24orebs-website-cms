@@ -20,8 +20,25 @@
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
+        align-items: center;
+        justify-content: start;
+        margin-bottom: 20px;
         font-size: 14px;
         line-height: 24px;
+        color: #6a7889;
+        width: 90%;
+        max-width: 800px;
+      }
+
+      .form-field-input {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: start;
+        margin-bottom: 20px;
+        font-size: 14px;
         color: #6a7889;
         width: 90%;
         max-width: 800px;
@@ -31,7 +48,6 @@
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
-        white-space: pre-wrap;
         width: 90%;
         font-size: 14px;
         line-height: 24px;
@@ -65,7 +81,7 @@
 
       .field-hint {
         color: #6a7889;
-        margin: 0.642857142857143em 0;
+        margin: 0;
         font-style: italic;
         width: 100%;
       }
@@ -73,152 +89,142 @@
   </head>
 
   <body>
-    <div class="widget-cta-button">
+    <div class="form-field">
+      <input type="checkbox" name="booking-enabled" id="booking-enabled" />
+      <label
+        id="booking-enabled-label"
+        class="form-label"
+        for="booking-enabled"
+      >
+        Enable Booking
+      </label>
+    </div>
+    <div
+      id="booking-url-field"
+      style="display: none"
+      class="form-field-input flex-column"
+    >
+      <label class="form-label" for="booking-url-input">Booking Url</label>
+      <div class="form-input-wrapper">
+        <input
+          type="text"
+          name="booking-url-input"
+          id="booking-url-input"
+          class="form-input"
+        />
+      </div>
+      <div class="field-hint">Hint for url input</div>
+    </div>
+    <div
+      id="booking-link-type-field"
+      style="display: none"
+      class="form-field-input"
+    >
       <div class="form-field">
-        <input type="checkbox" name="booking-enabled" id="booking-enabled" />
-        <label
-          id="booking-enabled-label"
-          class="form-label"
-          for="booking-enabled"
-        >
-          Enable Booking
-        </label>
-      </div>
-      <div
-        id="booking-url-field"
-        style="display: none"
-        class="form-field flex-column"
-      >
-        <label class="form-label" for="booking-url-input">Booking Url</label>
-        <div class="form-input-wrapper">
-          <input
-            type="text"
-            name="booking-url-input"
-            id="booking-url-input"
-            class="form-input"
-          />
-        </div>
-        <!-- <div class="field-hint">true
-          Non superare i 20 caratteri per mantenere una visualizzazione ordinata
-          su tutti i dispositivi
-        </div> -->
-      </div>
-      <div
-        id="booking-link-type-field"
-        style="display: none"
-        class="form-field"
-      >
         <input
           type="checkbox"
           name="booking-link-type-input"
-          id="bookig-link-type-input"
+          id="booking-link-type-input"
         />
         <label class="form-label" for="booking-link-type-input">
           Use url as directlink
         </label>
       </div>
-      <div class="field-hint">
-        Inserire l'indirizzo URL di destinazione al click interno al sito
-        (omettere in questo campo la prima parte del’URL https://www.24orebs.com
-        ). Il link di destinazione deve iniziare con '/'
-      </div>
+      <div class="field-hint">Hint for direct link</div>
     </div>
     <script type="text/javascript">
       window.contentfulExtension.init((extension) => {
-        const bookingEnabledCheckbox =
-          document.getElementById('booking-enabled');
+      const bookingEnabledCheckbox = document.getElementById('booking-enabled');
 
-        const bookingUrlField = document.getElementById('booking-url-field');
-        const bookingUrlInput = document.getElementById('booking-url-input');
+      const bookingUrlField = document.getElementById('booking-url-field');
+      const bookingUrlInput = document.getElementById('booking-url-input');
 
-        const bookingLinkTypeField = document.getElementById(
-          'booking-link-type-field'
-        );
-        const bookingLinkTypeInput = document.getElementById(
-          'booking-link-type-input'
-        );
+      const bookingLinkTypeField = document.getElementById(
+        'booking-link-type-field'
+      );
+      const bookingLinkTypeCheckbox = document.getElementById(
+        'booking-link-type-input'
+      );
 
-        let data = {
-          enabled: false,
-          url: null,
-          directLink: false,
-        };
+      let data = {
+        enabled: true,
+        url: null,
+        directLink: false,
+      };
 
-        const tmp = extension.field.getValue();
-        if (tmp) {
-          data = tmp;
-        } else {
-          saveField();
-        }
+      const tmp = extension.field.getValue();
+      // const tmp = { enabled: true, url: 'Default Value', directLink: true };
+      if (tmp) {
+        data = tmp;
+      } else {
+        saveField();
+      }
 
-        bookingEnabledCheckbox.checked = data.enabled || false;
-        bookingUrlInput.value = data.url || null;
-        bookingLinkTypeInput.checked = data.directLink || false;
+      bookingEnabledCheckbox.checked = data.enabled;
+      bookingUrlInput.value = data.url || null;
+      bookingLinkTypeCheckbox.checked = data.directLink;
 
-        if (bookingEnabledCheckbox.checked) {
+      if (bookingEnabledCheckbox.checked) {
+        onBookingChange(true);
+      } else {
+        onBookingChange(false);
+      }
+
+      bookingEnabledCheckbox.addEventListener('change', (event) => {
+        data.enabled = event.target.checked;
+        if (event.target.checked) {
           onBookingChange(true);
         } else {
           onBookingChange(false);
         }
+        saveField();
+      });
 
-        extension.window.updateHeight();
+      bookingUrlInput.addEventListener('change', (event) => {
+        data.url = event.target.value;
+      });
+      bookingUrlInput.addEventListener('blur', () => {
+        saveField();
+      });
+      bookingLinkTypeCheckbox.addEventListener('change', (event) => {
+        data.directLink = event.target.checked;
+      });
+      bookingLinkTypeCheckbox.addEventListener('blur', () => {
+        saveField();
+      });
 
-        bookingEnabledCheckbox.addEventListener('change', (event) => {
-          data.enabled = event.target.checked;
-          if (event.target.checked) {
-            onBookingChange(true);
-          } else {
-            onBookingChange(false);
-          }
-          saveField();
-        });
-
-        bookingUrlInput.addEventListener('change', (event) => {
-          data.url = event.target.value;
-        });
-        bookingUrlInput.addEventListener('blur', () => {
-          saveField();
-        });
-        bookingLinkTypeInput.addEventListener('change', (event) => {
-          data.directLink = event.target.checked;
-        });
-        bookingLinkTypeInput.addEventListener('blur', () => {
-          saveField();
-        });
-
-        function onBookingChange(active) {
-          if (active) {
-            bookingUrlField.style.display = 'flex';
-            bookingLinkTypeField.style.display = 'flex';
-            bookingUrlInput.required = true;
-          } else {
-            bookingUrlField.style.display = 'none';
-            bookingLinkTypeField.style.display = 'none';
-            bookingUrlInput.required = false;
-          }
+      function onBookingChange(active) {
+        if (active) {
+          bookingUrlField.style.display = 'flex';
+          bookingLinkTypeField.style.display = 'flex';
+          bookingUrlInput.required = true;
+        } else {
+          bookingUrlField.style.display = 'none';
+          bookingLinkTypeField.style.display = 'none';
+          bookingUrlInput.required = false;
         }
+      }
 
-        function saveField() {
-          extension.window.updateHeight();
-          extension.field.setValue(data);
-          if (data.enabled && !data.url) {
-            extension.field.removeValue();
-            extension.field.setInvalid(true);
-            extension.notifier.error(
-              'Se il bottone CTA è attivo, tutti i campi devono essere compilati.'
-            );
-            return;
-          }
-          //   if (data.enabled && !dat?.toLowerCase().startsWith('/')) {
-          //     extension.field.removeValue();
-          //     extension.field.setInvalid(true);
-          //     extension.notifier.error(
-          //       'Il campo CTA link non può essere un link esterno, deve iniziare con /'
-          //     );
-          //     return;
-          //   }
-          extension.field.setInvalid(false);
+      function saveField() {
+        extension.field.setValue(data);
+        if (data.enabled && !data.url) {
+          extension.field.removeValue();
+          extension.field.setInvalid(true);
+          extension.notifier.error(
+            'Se il bottone CTA è attivo, tutti i campi devono essere compilati.'
+          );
+          return;
         }
+        if (data.enabled && !dat?.toLowerCase().startsWith('/')) {
+          extension.field.removeValue();
+          extension.field.setInvalid(true);
+          extension.notifier.error(
+            'Il campo CTA link non può essere un link esterno, deve iniziare con /'
+          );
+          return;
+        }
+        extension.field.setInvalid(false);
+      }
       });
     </script>
   </body>
