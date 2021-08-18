@@ -1,0 +1,6 @@
+{
+    "id": "booking-field",
+    "name": "Booking Field",
+    "srcdoc": "index.html",
+    "fieldTypes": ["Object"]
+  }

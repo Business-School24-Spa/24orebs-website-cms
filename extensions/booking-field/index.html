@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Booking Field</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <script src="https://unpkg.com/contentful-ui-extensions-sdk@3"></script>
+    <style>
+      body {
+        margin: 0;
+        padding-bottom: 5px;
+        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica,
+          Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol !important;
+      }
+
+      .flex-column {
+        flex-direction: column;
+      }
+
+      .form-field {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        font-size: 14px;
+        line-height: 24px;
+        color: #6a7889;
+        width: 90%;
+        max-width: 800px;
+      }
+
+      .form-label {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        white-space: pre-wrap;
+        width: 90%;
+        font-size: 14px;
+        line-height: 24px;
+        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica,
+          Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol !important;
+      }
+
+      .form-input-wrapper {
+        display: block;
+        width: 90%;
+      }
+
+      .form-input {
+        display: block;
+        outline: none;
+        -webkit-box-shadow: inset 0 2px 0 rgb(225 228 232 / 20%);
+        box-shadow: inset 0 2px 0 rgb(225 228 232 / 20%);
+        background-color: #fff;
+        border: 1px solid #d3dce0;
+        border-radius: 6px;
+        max-height: 2.5rem;
+        color: #536171;
+        font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica,
+          Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol !important;
+        font-size: 0.875rem;
+        padding: 0.65625rem;
+        margin: 0;
+        width: 90%;
+        -webkit-appearance: textfield;
+      }
+
+      .field-hint {
+        color: #6a7889;
+        margin: 0.642857142857143em 0;
+        font-style: italic;
+        width: 100%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div>
+      <div class="form-field">
+        <input type="checkbox" name="booking-enabled" id="booking-enabled" />
+        <label
+          id="booking-enabled-label"
+          class="form-label"
+          for="booking-enabled"
+        >
+          Enable Booking
+        </label>
+      </div>
+      <div
+        id="booking-url-field"
+        style="display: none"
+        class="form-field flex-column"
+      >
+        <label class="form-label" for="booking-url-input">Booking Url</label>
+        <div class="form-input-wrapper">
+          <input
+            type="text"
+            name="booking-url-input"
+            id="booking-url-input"
+            class="form-input"
+          />
+        </div>
+        <!-- <div class="field-hint">true
+          Non superare i 20 caratteri per mantenere una visualizzazione ordinata
+          su tutti i dispositivi
+        </div> -->
+      </div>
+      <div
+        id="booking-link-type-field"
+        style="display: none"
+        class="form-field flex-column"
+      >
+        <label class="form-label" for="booking-link-type-input">
+          Use url as directlink
+        </label>
+        <div class="form-input-wrapper">
+          <input
+            type="text"
+            name="booking-link-type-input"
+            id="bookig-link-type-input"
+            class="form-input"
+          />
+        </div>
+        <div class="field-hint">
+          Inserire l'indirizzo URL di destinazione al click interno al sito
+          (omettere in questo campo la prima parte del’URL
+          https://www.24orebs.com ). Il link di destinazione deve iniziare con
+          '/'
+        </div>
+      </div>
+    </div>
+    <script type="text/javascript">
+      window.contentfulExtension.init((extension) => {
+        const bookingEnabledCheckbox =
+          document.getElementById('booking-enabled');
+
+        const bookingUrlField = document.getElementById('booking-url-field');
+        const bookingUrlInput = document.getElementById('booking-url-input');
+
+        const bookingLinkTypeField = document.getElementById(
+          'booking-link-type-field'
+        );
+        const bookingLinkTypeInput = document.getElementById(
+          'booking-link-type-input'
+        );
+
+        let data = {
+          enabled: false,
+          url: null,
+          directLink: false,
+        };
+
+        const tmp = extension.field.getValue();
+        if (tmp) {
+          data = tmp;
+        } else {
+          saveField();
+        }
+
+        bookingEnabledCheckbox.checked = data.enabled || false;
+        bookingUrlInput.value = data.url || null;
+        bookingLinkTypeInput.checked = data.directLink || false;
+
+        if (bookingEnabledCheckbox.checked) {
+          onBookingChange(true);
+        } else {
+          onBookingChange(false);
+        }
+
+        extension.window.updateHeight();
+
+        bookingEnabledCheckbox.addEventListener('change', (event) => {
+          data.enabled = event.target.checked;
+          if (event.target.checked) {
+            onBookingChange(true);
+          } else {
+            onBookingChange(false);
+          }
+          saveField();
+        });
+
+        bookingUrlInput.addEventListener('change', (event) => {
+          data.url = event.target.value;
+        });
+        bookingUrlInput.addEventListener('blur', () => {
+          saveField();
+        });
+        bookingLinkTypeInput.addEventListener('change', (event) => {
+          data.directLink = event.target.checked;
+        });
+        bookingLinkTypeInput.addEventListener('blur', () => {
+          saveField();
+        });
+
+        function onBookingChange(active) {
+          if (active) {
+            bookingUrlField.style.display = 'flex';
+            bookingLinkTypeField.style.display = 'flex';
+            bookingUrlInput.required = true;
+          } else {
+            bookingUrlField.style.display = 'none';
+            bookingLinkTypeField.style.display = 'none';
+            bookingUrlInput.required = false;
+          }
+        }
+
+        function saveField() {
+          extension.window.updateHeight();
+          extension.field.setValue(data);
+          if (data.enabled && !data.url) {
+            extension.field.removeValue();
+            extension.field.setInvalid(true);
+            extension.notifier.error(
+              'Se il bottone CTA è attivo, tutti i campi devono essere compilati.'
+            );
+            return;
+          }
+          //   if (data.enabled && !dat?.toLowerCase().startsWith('/')) {
+          //     extension.field.removeValue();
+          //     extension.field.setInvalid(true);
+          //     extension.notifier.error(
+          //       'Il campo CTA link non può essere un link esterno, deve iniziare con /'
+          //     );
+          //     return;
+          //   }
+          extension.field.setInvalid(false);
+        }
+      });
+    </script>
+  </body>
+</html>
