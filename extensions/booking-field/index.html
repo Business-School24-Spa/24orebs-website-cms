@@ -134,6 +134,8 @@
     </div>
     <script type="text/javascript">
       window.contentfulExtension.init((extension) => {
+      extension.window.updateHeight();
+
       const bookingEnabledCheckbox = document.getElementById('booking-enabled');
 
       const bookingUrlField = document.getElementById('booking-url-field');
@@ -198,10 +200,12 @@
           bookingUrlField.style.display = 'flex';
           bookingLinkTypeField.style.display = 'flex';
           bookingUrlInput.required = true;
+          extension.window.updateHeight();
         } else {
           bookingUrlField.style.display = 'none';
           bookingLinkTypeField.style.display = 'none';
           bookingUrlInput.required = false;
+          extension.window.updateHeight();
         }
       }
 
