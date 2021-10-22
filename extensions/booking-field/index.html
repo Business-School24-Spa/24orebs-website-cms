@@ -3,7 +3,7 @@
   <head>
     <title>Booking Field</title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
-    <!-- <script src="https://unpkg.com/contentful-ui-extensions-sdk@3"></script> -->
+    <script src="https://unpkg.com/contentful-ui-extensions-sdk@3"></script>
     <style>
       body {
         margin: 0;
@@ -147,14 +147,20 @@
       </div>
     </div>
 
-    <div id="booking-cta-field" style="display: none; margin-top: 3rem; margin-bottom: 1rem;" class="form-field-input">
-      <div class="form-field" style="margin-bottom: 0;">
+    <div
+      id="booking-cta-field"
+      style="display: none; margin-top: 3rem; margin-bottom: 1rem"
+      class="form-field-input"
+    >
+      <div class="form-field" style="margin-bottom: 0">
         <input
           type="checkbox"
           name="booking-cta-input"
           id="booking-cta-input"
         />
-        <label class="form-label" for="booking-cta-input"> Use CTA Form Instead</label>
+        <label class="form-label" for="booking-cta-input">
+          Use CTA Form Instead</label
+        >
       </div>
     </div>
     <div
@@ -175,155 +181,156 @@
     </div>
     <script type="text/javascript">
       window.contentfulExtension.init((extension) => {
-      extension.window.updateHeight();
+        extension.window.updateHeight();
 
-      const bookingEnabledCheckbox = document.getElementById('booking-enabled');
+        const bookingEnabledCheckbox =
+          document.getElementById('booking-enabled');
 
-      const bookingUrlField = document.getElementById('booking-url-field');
-      const bookingUrlInput = document.getElementById('booking-url-input');
+        const bookingUrlField = document.getElementById('booking-url-field');
+        const bookingUrlInput = document.getElementById('booking-url-input');
 
-      const bookingLinkTypeField = document.getElementById(
-        'booking-link-type-field'
-      );
-      const bookingLinkTypeCheckbox = document.getElementById(
-        'booking-link-type-input'
-      );
+        const bookingLinkTypeField = document.getElementById(
+          'booking-link-type-field'
+        );
+        const bookingLinkTypeCheckbox = document.getElementById(
+          'booking-link-type-input'
+        );
 
-      const bookingCtaField = document.getElementById('booking-cta-field');
-      const bookingCtaInput = document.getElementById('booking-cta-input');
+        const bookingCtaField = document.getElementById('booking-cta-field');
+        const bookingCtaInput = document.getElementById('booking-cta-input');
 
-      const bookingCourseIdField = document.getElementById(
-        'booking-courseId-field'
-      );
-      const bookingCourseIdInput = document.getElementById(
-        'booking-courseId-input'
-      );
+        const bookingCourseIdField = document.getElementById(
+          'booking-courseId-field'
+        );
+        const bookingCourseIdInput = document.getElementById(
+          'booking-courseId-input'
+        );
 
-      let data = {
-        enabled: true,
-        url: null,
-        directLink: false,
-        useCta: false,
-        courseId: null,
-      };
+        let data = {
+          enabled: true,
+          url: null,
+          directLink: false,
+          useCta: false,
+          courseId: null,
+        };
 
-      const tmp = extension.field.getValue();
-      const tmp = { enabled: true, url: 'Default Value', directLink: true };
-      if (tmp) {
-        data = tmp;
-      } else {
-        saveField();
-      }
-
-      bookingEnabledCheckbox.checked = data.enabled;
-      bookingUrlInput.value = data.url || null;
-      bookingLinkTypeCheckbox.checked = data.directLink;
-      bookingCtaInput.checked = data.useCta;
-      bookingCourseIdInput.value = data.courseId || null;
-
-      onCtaInputChange(bookingCourseIdInput.checked);
-      onBookingChange(bookingEnabledCheckbox.checked);
-
-      bookingEnabledCheckbox.addEventListener('change', (event) => {
-        data.enabled = event.target.checked;
-        if (event.target.checked) {
-          onBookingChange(true);
+        const tmp = extension.field.getValue();
+        // const tmp = { enabled: true, url: 'Default Value', directLink: true, useCta: true, courseId: '123'};
+        if (tmp) {
+          data = tmp;
         } else {
-          onBookingChange(false);
+          saveField();
         }
-        saveField();
-      });
 
-      bookingUrlInput.addEventListener('change', (event) => {
-        data.url = event.target.value;
-      });
-      bookingUrlInput.addEventListener('blur', () => {
-        saveField();
-      });
-      bookingLinkTypeCheckbox.addEventListener('change', (event) => {
-        data.directLink = event.target.checked;
-      });
-      bookingLinkTypeCheckbox.addEventListener('blur', () => {
-        saveField();
-      });
+        bookingEnabledCheckbox.checked = data.enabled;
+        bookingUrlInput.value = data.url || null;
+        bookingLinkTypeCheckbox.checked = data.directLink;
 
-      function onCtaInputChange(active) {
-        if (active) {
-          bookingUrlInput.disabled = true;
-          bookingUrlInput.required = false;
-          bookingUrlField.classList.add('disabled');
-          bookingLinkTypeField.classList.add('disabled');
+        onBookingChange(bookingEnabledCheckbox.checked);
 
-          bookingLinkTypeCheckbox.disabled = true;
+        bookingCtaInput.checked = data.useCta;
+        bookingCourseIdInput.value = data.courseId || null;
 
-          bookingCourseIdInput.disabled = false;
-          bookingCourseIdInput.required = true;
-          bookingCourseIdField.classList.remove('disabled');
-        } else {
-          bookingUrlInput.disabled = false;
-          bookingUrlInput.required = true;
-          bookingUrlField.classList.remove('disabled');
-          bookingLinkTypeField.classList.remove('disabled');
+        onCtaInputChange(bookingCtaInput.checked);
 
-          bookingLinkTypeCheckbox.disabled = false;
+        bookingEnabledCheckbox.addEventListener('change', (event) => {
+          data.enabled = event.target.checked;
+          onBookingChange(data.enabled);
+          saveField();
+        });
 
-          bookingCourseIdInput.disabled = true;
-          bookingCourseIdInput.required = false;
-          bookingCourseIdField.classList.add('disabled');
+        bookingUrlInput.addEventListener('change', (event) => {
+          data.url = event.target.value;
+        });
+        bookingUrlInput.addEventListener('blur', () => {
+          saveField();
+        });
+        bookingLinkTypeCheckbox.addEventListener('change', (event) => {
+          data.directLink = event.target.checked;
+        });
+        bookingLinkTypeCheckbox.addEventListener('blur', () => {
+          saveField();
+        });
+
+        bookingCtaInput.addEventListener('change', (event) => {
+          data.useCta = event.target.checked;
+          onCtaInputChange(data.useCta);
+          saveField();
+        });
+
+        bookingCourseIdInput.addEventListener('change', (event) => {
+          data.courseId = event.target.value;
+        });
+        bookingCourseIdInput.addEventListener('blur', () => {
+          saveField();
+        });
+
+        function onCtaInputChange(active) {
+          if (active) {
+            bookingUrlInput.disabled = true;
+            bookingUrlInput.required = false;
+            bookingUrlField.classList.add('disabled');
+            bookingLinkTypeField.classList.add('disabled');
+            bookingLinkTypeCheckbox.disabled = true;
+
+            bookingCourseIdInput.disabled = false;
+            bookingCourseIdInput.required = true;
+            bookingCourseIdField.classList.remove('disabled');
+          } else {
+            bookingUrlInput.disabled = false;
+            bookingUrlInput.required = true;
+            bookingUrlField.classList.remove('disabled');
+            bookingLinkTypeField.classList.remove('disabled');
+
+            bookingLinkTypeCheckbox.disabled = false;
+
+            bookingCourseIdInput.disabled = true;
+            bookingCourseIdInput.required = false;
+            bookingCourseIdField.classList.add('disabled');
+          }
         }
-      }
 
-      bookingCtaInput.addEventListener('change', (event) => {
-        data.useCta = event.target.checked;
-        onCtaInputChange(data.useCta);
-      });
-      bookingCtaInput.addEventListener('blur', () => {
-        saveField();
-      });
-      bookingCourseIdInput.addEventListener('change', (event) => {
-        data.courseId = event.target.value;
-      });
-      bookingCourseIdInput.addEventListener('blur', () => {
-        saveField();
-      });
+        function onBookingChange(active) {
+          if (active) {
+            bookingUrlField.style.display = 'flex';
+            bookingLinkTypeField.style.display = 'flex';
 
-      function onBookingChange(active) {
-        if (active) {
-          bookingUrlField.style.display = 'flex';
-          bookingLinkTypeField.style.display = 'flex';
-
-          bookingCourseIdField.style.display = 'flex';
-          bookingCtaField.style.display = 'flex';
-          extension.window.updateHeight();
-        } else {
-          bookingUrlField.style.display = 'none';
-          bookingLinkTypeField.style.display = 'none';
-          bookingCourseIdField.style.display = 'none';
-          bookingCtaField.style.display = 'none';
-          extension.window.updateHeight();
+            bookingCourseIdField.style.display = 'flex';
+            bookingCtaField.style.display = 'flex';
+            extension.window.updateHeight();
+          } else {
+            bookingUrlField.style.display = 'none';
+            bookingLinkTypeField.style.display = 'none';
+            bookingCourseIdField.style.display = 'none';
+            bookingCtaField.style.display = 'none';
+            extension.window.updateHeight();
+          }
         }
-      }
 
-      function saveField() {
-        extension.field.setValue(data);
-        if (data.enabled && !data.url) {
-          extension.field.removeValue();
-          extension.field.setInvalid(true);
-          extension.notifier.error(
-            'Se il bottone CTA è attivo, tutti i campi devono essere compilati.'
-          );
-          return;
+        function saveField() {
+          extension.field.setValue(data);
+          if (
+            data.enabled &&
+            ((bookingUrlInput.required && !data.url) ||
+              (bookingCourseIdInput.required && !data.courseId))
+          ) {
+            extension.field.removeValue();
+            extension.field.setInvalid(true);
+            extension.notifier.error(
+              'Se il bottone CTA è attivo, tutti i campi devono essere compilati.'
+            );
+            return;
+          }
+          // if (data.enabled && !data?.url.toLowerCase().startsWith('/')) {
+          //   extension.field.removeValue();
+          //   extension.field.setInvalid(true);
+          //   extension.notifier.error(
+          //     'Il campo CTA link non può essere un link esterno, deve iniziare con /'
+          //   );
+          //   return;
+          // }
+          extension.field.setInvalid(false);
         }
-        if (data.enabled && !dat?.toLowerCase().startsWith('/')) {
-          extension.field.removeValue();
-          extension.field.setInvalid(true);
-          extension.notifier.error(
-            'Il campo CTA link non può essere un link esterno, deve iniziare con /'
-          );
-          return;
-        }
-        extension.field.setInvalid(false);
-      }
       });
     </script>
   </body>
