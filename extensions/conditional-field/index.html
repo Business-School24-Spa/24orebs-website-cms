@@ -59,7 +59,7 @@
       }
 
       const instance = sdk.parameters.instance;
-      const { field, operator, value } = instance;
+      const { field, operator, value, disabledValue } = instance;
 
       const updateFieldValue = async (locale) => {
 
@@ -78,7 +78,7 @@
           if (raw.toLowerCase() == value.toLowerCase()) {
             showField();
             if (!sdk.field.getValue()) {
-              sdk.field.setValue("00:00");
+              sdk.field.setValue(disabledValue);
             }
           } else {
             hideField();
@@ -90,7 +90,7 @@
           if (raw.toLowerCase() != value.toLowerCase()) {
             showField();
             if (!sdk.field.getValue()) {
-              sdk.field.setValue("00:00");
+              sdk.field.setValue(disabledValue);
             }
           } else {
             hideField();

@@ -2,7 +2,7 @@
   "id": "conditional-field",
   "name": "Conditional field",
   "srcdoc": "index.html",
-  "fieldTypes": ["Symbol"],
+  "fieldTypes": ["Symbol", "Boolean"],
   "parameters": {
     "instance": [
       {
@@ -28,6 +28,14 @@
         "type": "Symbol",
         "required": true,
         "default": ""
+      },
+      {
+        "id": "disabledValue",
+        "name": "Valore quando disabilitato",
+        "description": "Esempio: true, 'red'",
+        "type": "Symbol",
+        "required": true,
+        "default": "true"
       }
     ]
   }
