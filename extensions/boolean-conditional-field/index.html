@@ -18,7 +18,8 @@
     }
 
     .form-input-wrapper {
-      display: block;
+      display: inline-flex;
+      justify-content: flex-start;
       width: 90%;
     }
 
@@ -36,8 +37,13 @@
       font-size: .875rem;
       padding: .65625rem;
       margin: 0;
-      width: 90%;
+      width: auto;
       -webkit-appearance: textfield;
+    }
+
+    .form-label {
+      padding: 0 1rem;
+      margin-right: 1rem;
     }
   </style>
 </head>
@@ -45,24 +51,21 @@
 <body>
   <div class="container">
     <div class="form-input-wrapper">
-      <label id="booleanTrueLabel" for="booleanTrue">
-        <input id="conditionalField booleanTrue" type="checkbox" name="conditionalField" value="true" class="form-input boolean"/>
-        Si
-      </label>
-      <label id="booleanFalseLabel" for="booleanFalse">
-        <input id="conditionalField booleanFalse" type="checkbox" name="conditionalField" value="false" class="form-input boolean"/>
-        No
-      </label>
+      <input id="booleanTrueField" type="radio" name="conditionalField" value="true" class="form-input boolean"/>
+      <label id="booleanTrueLabel" for="booleanTrue" class="form-label">Si</label>
+      <input id="booleanFalseField" type="radio" name="conditionalField" value="false" class="form-input boolean"/>
+      <label id="booleanFalseLabel" for="booleanFalse" class="form-label">No</label>
     </div>
   </div>
   <script type="text/javascript">
     window.contentfulExtension.init(sdk => {
-      const conditionalField = document.getElementById("conditionalField");
+      const booleanTrueField = document.getElementById("booleanTrueField");
+      const booleanFalseField = document.getElementById("booleanFalseField");
 
       let debounceInterval = 0;
 
       if (sdk.field.getValue()) {
-        conditionalField.value = sdk.field.getValue();
+        document.getElementsByName("conditionalField").value = sdk.field.getValue();
       }
 
       const instance = sdk.parameters.instance;
@@ -83,21 +86,27 @@
 
         if (operator === "==") {
           if (raw.toLowerCase() == value.toLowerCase()) {
-            if (!sdk.field.getValue()) {
-              sdk.field.setValue(false);
-            }
+            sdk.field.setValue(false);
+            booleanFalseField.checked = true;
+            booleanTrueField.disabled = true;
+            booleanFalseField.disabled = true;
           } else {
             sdk.field.removeValue();
+            booleanTrueField.disabled = false;
+            booleanFalseField.disabled = false;
           }
         }
         
         if (operator === "!=") {
           if (raw.toLowerCase() != value.toLowerCase()) {
-            if (!sdk.field.getValue()) {
-              sdk.field.setValue(false);
-            }
+            sdk.field.setValue(false);
+            booleanFalseField.checked = true;
+            booleanTrueField.disabled = true;
+            booleanFalseField.disabled = true;
           } else {
             sdk.field.removeValue();
+            booleanTrueField.disabled = false;
+            booleanFalseField.disabled = false;
           }
         }
       }
@@ -118,8 +127,11 @@
         });
       }
 
-      conditionalField.addEventListener('change', (event) => {
-        sdk.field.setValue(event.target.value);
+      booleanTrueField.addEventListener('change', (event) => {
+        sdk.field.setValue(Boolean(event.target.value));
+      });
+      booleanFalseField.addEventListener('change', (event) => {
+        sdk.field.setValue(Boolean(event.target.value));
       });
 
       sdk.window.updateHeight();
