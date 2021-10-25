@@ -59,7 +59,7 @@
       }
 
       const instance = sdk.parameters.instance;
-      const { field, operator, value, disabledValue } = instance;
+      const { field, operator, value, disabledValue, hiddenField } = instance;
 
       const updateFieldValue = async (locale) => {
 
@@ -76,24 +76,32 @@
 
         if (operator === "==") {
           if (raw.toLowerCase() == value.toLowerCase()) {
-            showField();
+            if (hiddenField) {
+              showField();
+            }
             if (!sdk.field.getValue()) {
               sdk.field.setValue(disabledValue);
             }
           } else {
-            hideField();
+            if (hiddenField) {
+              hideField();
+            }
             sdk.field.removeValue();
           }
         }
         
         if (operator === "!=") {
           if (raw.toLowerCase() != value.toLowerCase()) {
-            showField();
+            if (hiddenField) {
+              showField();
+            }
             if (!sdk.field.getValue()) {
               sdk.field.setValue(disabledValue);
             }
           } else {
-            hideField();
+            if (hiddenField) {
+              hideField();
+            }
             sdk.field.removeValue();
           }
         }
