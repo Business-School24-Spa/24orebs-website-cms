@@ -59,7 +59,9 @@
       }
 
       const instance = sdk.parameters.instance;
-      const { field, operator, value, disabledValue, hiddenField } = instance;
+      const { type, field, operator, value, disabledValue, hiddenField } = instance;
+
+      conditionalField.setAttribute("type", type)
 
       const updateFieldValue = async (locale) => {
 

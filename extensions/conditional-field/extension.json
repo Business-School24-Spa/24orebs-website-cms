@@ -6,6 +6,14 @@
   "parameters": {
     "instance": [
       {
+        "id": "type",
+        "name": "Input type",
+        "description": "Esempio: text",
+        "type": "Symbol",
+        "required": true,
+        "default": "text"
+      },
+      {
         "id": "field",
         "name": "Se questo campo",
         "description": "Esempio: title",
