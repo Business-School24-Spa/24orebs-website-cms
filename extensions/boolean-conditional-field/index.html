@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Conditional</title>
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/contentful-ui-extensions-sdk@3/dist/cf-extension.css">
+  <script src="https://unpkg.com/contentful-ui-extensions-sdk@3"></script>
+  <style>
+    body { 
+      margin: 0;
+      padding-bottom: 5px;
+      font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol !important;
+    }
+
+    .container {
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .form-input-wrapper {
+      display: block;
+      width: 90%;
+    }
+
+    .form-input {
+      display: block;
+      outline: none;
+      -webkit-box-shadow: inset 0 2px 0 rgb(225 228 232 / 20%);
+      box-shadow: inset 0 2px 0 rgb(225 228 232 / 20%);
+      background-color: #fff;
+      border: 1px solid #d3dce0;
+      border-radius: 6px;
+      max-height: 2.5rem;
+      color: #536171;
+      font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica,Arial,sans-serif,Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol !important;
+      font-size: .875rem;
+      padding: .65625rem;
+      margin: 0;
+      width: 90%;
+      -webkit-appearance: textfield;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="form-input-wrapper">
+      <label id="booleanTrueLabel" for="booleanTrue">
+        <input id="conditionalField booleanTrue" type="checkbox" name="conditionalField" value="true" class="form-input boolean"/>
+        Si
+      </label>
+      <label id="booleanFalseLabel" for="booleanFalse">
+        <input id="conditionalField booleanFalse" type="checkbox" name="conditionalField" value="false" class="form-input boolean"/>
+        No
+      </label>
+    </div>
+  </div>
+  <script type="text/javascript">
+    window.contentfulExtension.init(sdk => {
+      const conditionalField = document.getElementById("conditionalField");
+
+      let debounceInterval = 0;
+
+      if (sdk.field.getValue()) {
+        conditionalField.value = sdk.field.getValue();
+      }
+
+      const instance = sdk.parameters.instance;
+      const { field, operator, value } = instance;
+
+      const updateFieldValue = async (locale) => {
+
+        const defaultLocale = sdk.locales.default;
+        let raw = null;
+
+        if (sdk.entry.fields[field] !== undefined) {
+          if (sdk.entry.fields[field].locales.includes(locale)) {
+            raw = sdk.entry.fields[field].getValue(locale) || '';
+          } else {
+            raw = sdk.entry.fields[field].getValue(defaultLocale) || '';
+          }
+        }
+
+        if (operator === "==") {
+          if (raw.toLowerCase() == value.toLowerCase()) {
+            if (!sdk.field.getValue()) {
+              sdk.field.setValue(false);
+            }
+          } else {
+            sdk.field.removeValue();
+          }
+        }
+        
+        if (operator === "!=") {
+          if (raw.toLowerCase() != value.toLowerCase()) {
+            if (!sdk.field.getValue()) {
+              sdk.field.setValue(false);
+            }
+          } else {
+            sdk.field.removeValue();
+          }
+        }
+      }
+
+      if (Object.prototype.hasOwnProperty.call(sdk.entry.fields, field)) {
+        const locales = sdk.entry.fields[field].locales;
+
+        locales.forEach((locale) => {
+          sdk.entry.fields[field].onValueChanged(locale, () => {
+            if (debounceInterval) {
+              clearInterval(debounceInterval);
+            }
+            // eslint-disable-next-line react-hooks/exhaustive-deps
+            debounceInterval = window.setTimeout(() => {
+              updateFieldValue(locale);
+            }, 500);
+          });
+        });
+      }
+
+      conditionalField.addEventListener('change', (event) => {
+        sdk.field.setValue(event.target.value);
+      });
+
+      sdk.window.updateHeight();
+    });
+  </script>
+</body>
+
+</html>
