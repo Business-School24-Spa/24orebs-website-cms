@@ -45,12 +45,23 @@
 <body>
   <div class="container">
     <div class="form-input-wrapper">
-      <input id="conditionalField" type="time" name="slug" class="form-input"/>
+      <input id="conditionalField" type="time" name="conditionalField" class="form-input symbol"/>
+      <label id="booleanTrueLabel" for="booleanTrue">
+        <input id="conditionalField booleanTrue" type="checkbox" name="conditionalField" value="true" class="form-input boolean"/>
+        Si
+      </label>
+      <label id="booleanFalseLabel" for="booleanFalse">
+        <input id="conditionalField booleanFalse" type="checkbox" name="conditionalField" value="false" class="form-input boolean"/>
+        No
+      </label>
     </div>
   </div>
   <script type="text/javascript">
     window.contentfulExtension.init(sdk => {
       const conditionalField = document.getElementById("conditionalField");
+      const symbolField = document.getElementsByClassName("symbol");
+      const booleanTrueLabel = document.getElementById("booleanTrueLabel");
+      const booleanFalseLabel = document.getElementById("booleanFalseLabel");
 
       let debounceInterval = 0;
 
@@ -61,7 +72,13 @@
       const instance = sdk.parameters.instance;
       const { type, field, operator, value, disabledValue, hiddenField } = instance;
 
-      conditionalField.setAttribute("type", type)
+      if (type === "boolean") {
+        symbolField.remove();
+      } else {
+        booleanTrueLabel.remove();
+        booleanFalseLabel.remove();
+        conditionalField.setAttribute("type", type);
+      }
 
       const updateFieldValue = async (locale) => {
 
