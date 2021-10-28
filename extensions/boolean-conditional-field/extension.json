@@ -2,7 +2,7 @@
   "id": "boolean-conditional-field",
   "name": "Boolean conditional field",
   "srcdoc": "index.html",
-  "fieldTypes": ["Symbol", "Boolean"],
+  "fieldTypes": ["Boolean"],
   "parameters": {
     "instance": [
       {
