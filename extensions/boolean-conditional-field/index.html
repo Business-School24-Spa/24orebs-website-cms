@@ -51,12 +51,12 @@
 <body>
   <div class="container">
     <div class="form-input-wrapper">
-      <input id="booleanTrueField" type="radio" name="conditionalField" value="true" class="form-input boolean"/>
-      <label id="booleanTrueLabel" for="booleanTrue" class="form-label">
+      <label id="booleanTrueLabel" for="booleanTrueField" class="form-label">
+        <input id="booleanTrueField" type="radio" name="conditionalField" value="true" class="form-input boolean"/>
         Si, utilizza per il Primo Box la fascia Best Seller Area Tematica
       </label>
-      <input id="booleanFalseField" type="radio" name="conditionalField" value="false" class="form-input boolean"/>
-      <label id="booleanFalseLabel" for="booleanFalse" class="form-label">
+      <label id="booleanFalseLabel" for="booleanFalseField" class="form-label">
+        <input id="booleanFalseField" type="radio" name="conditionalField" value="false" class="form-input boolean"/>
         No, voglio personalizzare i contenuti del Primo Box
       </label>
     </div>
@@ -68,8 +68,12 @@
 
       let debounceInterval = 0;
 
+      console.log('getValue', sdk.field.getValue());
+
       if (sdk.field.getValue()) {
-        document.getElementsByName("conditionalField").value = sdk.field.getValue();
+        booleanTrueField.checked = true;
+      } else {
+        booleanTrueField.checked = false;
       }
 
       const instance = sdk.parameters.instance;
@@ -131,11 +135,11 @@
         });
       }
 
-      booleanTrueField.addEventListener('change', (event) => {
-        sdk.field.setValue(Boolean(event.target.value));
-      });
-      booleanFalseField.addEventListener('change', (event) => {
-        sdk.field.setValue(Boolean(event.target.value));
+      [...document.querySelectorAll('input[type=radio]')].forEach( elem => {
+        elem.addEventListener('click', event => {
+          console.log('value', event.target.value);
+          sdk.field.setValue(event.target.value);
+        });
       });
 
       sdk.window.updateHeight();
