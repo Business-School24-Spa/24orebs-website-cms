@@ -1,7 +1,7 @@
 {
   "id": "boolean-conditional-field",
   "name": "Boolean conditional field",
-  "srcdoc": "./build/index.html",
+  "srcdoc": "index.html",
   "fieldTypes": ["Boolean"],
   "parameters": {
     "instance": [

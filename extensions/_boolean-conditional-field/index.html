@@ -137,8 +137,7 @@
 
       [...document.querySelectorAll('input[type=radio]')].forEach( elem => {
         elem.addEventListener('click', event => {
-          console.log('value', event.target.value);
-          sdk.field.setValue(event.target.value);
+          sdk.field.setValue(Boolean(event.target.value));
         });
       });
 
