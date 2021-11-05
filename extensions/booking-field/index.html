@@ -168,7 +168,9 @@
       style="display: none"
       class="form-field-input flex-column"
     >
-      <label class="form-label" for="booking-courseId-input">ID Corso Docebo</label>
+      <label class="form-label" for="booking-courseId-input"
+        >ID Corso Docebo</label
+      >
       <div class="form-input-wrapper">
         <input
           type="text"
@@ -177,13 +179,16 @@
           class="form-input"
         />
       </div>
-      
-      <div
+    </div>
+
+    <div
       id="booking-sessionId-field"
       style="display: none"
       class="form-field-input flex-column"
     >
-      <label class="form-label" for="booking-sessionId-input">ID Sessione Docebo</label>
+      <label class="form-label" for="booking-sessionId-input"
+        >ID Sessione Docebo</label
+      >
       <div class="form-input-wrapper">
         <input
           type="text"
@@ -192,7 +197,6 @@
           class="form-input"
         />
       </div>
-      <!-- <div class="field-hint">Course ID</div> -->
     </div>
     <script type="text/javascript">
       window.contentfulExtension.init((extension) => {
@@ -220,7 +224,7 @@
         const bookingCourseIdInput = document.getElementById(
           'booking-courseId-input'
         );
-        
+
         const bookingSessionIdField = document.getElementById(
           'booking-sessionId-field'
         );
@@ -228,14 +232,13 @@
           'booking-sessionId-input'
         );
 
-
         let data = {
           enabled: true,
           url: null,
           directLink: false,
           useCta: false,
           courseId: null,
-          sessionId: null
+          sessionId: null,
         };
 
         const tmp = extension.field.getValue();
@@ -289,7 +292,7 @@
         bookingCourseIdInput.addEventListener('blur', () => {
           saveField();
         });
-        
+
         bookingSessionIdInput.addEventListener('change', (event) => {
           data.sessinId = event.target.value;
         });
@@ -322,7 +325,7 @@
             bookingCourseIdInput.disabled = true;
             bookingCourseIdInput.required = false;
             bookingCourseIdField.classList.add('disabled');
-            
+
             bookingSessionIdInput.disabled = true;
             bookingSessionIdInput.required = false;
             bookingSessionIdField.classList.add('disabled');
@@ -351,7 +354,8 @@
           if (
             data.enabled &&
             ((bookingUrlInput.required && !data.url) ||
-              (bookingCourseIdInput.required && !data.courseId) || (bookingSessionIdInput.required && !data.sessionId))
+              (bookingCourseIdInput.required && !data.courseId) ||
+              (bookingSessionIdInput.required && !data.sessionId))
           ) {
             extension.field.removeValue();
             extension.field.setInvalid(true);
