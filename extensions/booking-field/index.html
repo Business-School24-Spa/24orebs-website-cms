@@ -294,7 +294,7 @@
         });
 
         bookingSessionIdInput.addEventListener('change', (event) => {
-          data.sessinId = event.target.value;
+          data.sessionId = event.target.value;
         });
         bookingSessionIdInput.addEventListener('blur', () => {
           saveField();
@@ -338,12 +338,16 @@
             bookingLinkTypeField.style.display = 'flex';
 
             bookingCourseIdField.style.display = 'flex';
+            bookingSessionIdField.style.display = 'flex';
+
             bookingCtaField.style.display = 'flex';
             extension.window.updateHeight();
           } else {
             bookingUrlField.style.display = 'none';
             bookingLinkTypeField.style.display = 'none';
             bookingCourseIdField.style.display = 'none';
+            bookingSessionIdField.style.display = 'none';
+
             bookingCtaField.style.display = 'none';
             extension.window.updateHeight();
           }
