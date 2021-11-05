@@ -168,12 +168,27 @@
       style="display: none"
       class="form-field-input flex-column"
     >
-      <label class="form-label" for="booking-courseId-input">Course ID</label>
+      <label class="form-label" for="booking-courseId-input">ID Corso Docebo</label>
       <div class="form-input-wrapper">
         <input
           type="text"
           name="booking-courseId-input"
           id="booking-courseId-input"
+          class="form-input"
+        />
+      </div>
+      
+      <div
+      id="booking-sessionId-field"
+      style="display: none"
+      class="form-field-input flex-column"
+    >
+      <label class="form-label" for="booking-sessionId-input">ID Sessione Docebo</label>
+      <div class="form-input-wrapper">
+        <input
+          type="text"
+          name="booking-sessionId-input"
+          id="booking-sessionId-input"
           class="form-input"
         />
       </div>
@@ -205,6 +220,14 @@
         const bookingCourseIdInput = document.getElementById(
           'booking-courseId-input'
         );
+        
+        const bookingSessionIdField = document.getElementById(
+          'booking-sessionId-field'
+        );
+        const bookingSessionIdInput = document.getElementById(
+          'booking-sessionId-input'
+        );
+
 
         let data = {
           enabled: true,
@@ -212,6 +235,7 @@
           directLink: false,
           useCta: false,
           courseId: null,
+          sessionId: null
         };
 
         const tmp = extension.field.getValue();
@@ -230,6 +254,7 @@
 
         bookingCtaInput.checked = data.useCta;
         bookingCourseIdInput.value = data.courseId || null;
+        bookingSessionIdInput.value = data.sessionId || null;
 
         onCtaInputChange(bookingCtaInput.checked);
 
@@ -264,6 +289,13 @@
         bookingCourseIdInput.addEventListener('blur', () => {
           saveField();
         });
+        
+        bookingSessionIdInput.addEventListener('change', (event) => {
+          data.sessinId = event.target.value;
+        });
+        bookingSessionIdInput.addEventListener('blur', () => {
+          saveField();
+        });
 
         function onCtaInputChange(active) {
           if (active) {
@@ -275,7 +307,10 @@
 
             bookingCourseIdInput.disabled = false;
             bookingCourseIdInput.required = true;
+            bookingSessionIdInput.disabled = false;
+            bookingSessionIdInput.required = true;
             bookingCourseIdField.classList.remove('disabled');
+            bookingSessionIdField.classList.remove('disabled');
           } else {
             bookingUrlInput.disabled = false;
             bookingUrlInput.required = true;
@@ -287,6 +322,10 @@
             bookingCourseIdInput.disabled = true;
             bookingCourseIdInput.required = false;
             bookingCourseIdField.classList.add('disabled');
+            
+            bookingSessionIdInput.disabled = true;
+            bookingSessionIdInput.required = false;
+            bookingSessionIdField.classList.add('disabled');
           }
         }
 
@@ -312,7 +351,7 @@
           if (
             data.enabled &&
             ((bookingUrlInput.required && !data.url) ||
-              (bookingCourseIdInput.required && !data.courseId))
+              (bookingCourseIdInput.required && !data.courseId) || (bookingSessionIdInput.required && !data.sessionId)
           ) {
             extension.field.removeValue();
             extension.field.setInvalid(true);
