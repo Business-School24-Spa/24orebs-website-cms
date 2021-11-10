@@ -30,12 +30,10 @@ export class App extends React.Component<AppProps, AppState> {
 
     const { field } = this.props.sdk.parameters.instance;
 
-    console.log("field", field);
-
     this.props.sdk.entry.fields[field].onValueChanged(this.onCourseCategoryChange);
 
     // Handler for external field value changes (e.g. when multiple authors are working on the same entry).
-    this.detachExternalChangeHandler = this.props.sdk.field.onValueChanged(this.onExternalChange);
+    // this.detachExternalChangeHandler = this.props.sdk.field.onValueChanged(this.onExternalChange);
   }
 
   componentWillUnmount() {
@@ -51,11 +49,10 @@ export class App extends React.Component<AppProps, AppState> {
       if (raw.toLowerCase() == value.toLowerCase()) {
         this.props.sdk.field.setValue(false);
         this.setState({
-          ...this.state,
+          value: false,
           disabled: true
         });
       } else {
-        this.props.sdk.field.removeValue();
         this.setState({
           ...this.state,
           disabled: false
@@ -75,14 +72,16 @@ export class App extends React.Component<AppProps, AppState> {
   };
 
   render() {
+    const { value, disabled } = this.state;
+
     return (
       <div>
         <RadioButtonField
           name="booleanConditionalField"
           id="booleanTrueField"
           value="true"
-          disabled={this.state.disabled}
-          checked={this.state.value === true}
+          disabled={disabled}
+          checked={value === true}
           onChange={this.onChange}
           labelText="Si, utilizza per il Primo Box la fascia Best Seller Area Tematica"
           helpText=""
@@ -91,8 +90,8 @@ export class App extends React.Component<AppProps, AppState> {
           name="booleanConditionalField"
           id="booleanFalseField"
           value="false"
-          disabled={this.state.disabled}
-          checked={this.state.value === false}
+          disabled={disabled}
+          checked={value === false}
           onChange={this.onChange}
           labelText="No, voglio personalizzare i contenuti del Primo Box"
           helpText=""
