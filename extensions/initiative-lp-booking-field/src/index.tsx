@@ -15,7 +15,6 @@ interface FieldValue {
   fastBooking: boolean;
   url: string;
   directLink: boolean;
-  useCta: boolean;
   courseId: string;
   sessionId: string;
 }
@@ -29,7 +28,6 @@ const defaultData: FieldValue = {
   fastBooking: false,
   url: '',
   directLink: false,
-  useCta: false,
   courseId: '',
   sessionId: ''
 }
@@ -112,20 +110,6 @@ export class App extends React.Component<AppProps, AppState> {
     }
   };
 
-  bookingCTAOnChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if (this.state.value.useCta) {
-      this.saveField({
-        ...this.state.value,
-        useCta: false,
-      });
-    } else {
-      this.saveField({
-        ...this.state.value,
-        useCta: true,
-      });
-    }
-  };
-
   bookingCourseIdOnChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     this.saveField({
       ...this.state.value,
@@ -146,12 +130,7 @@ export class App extends React.Component<AppProps, AppState> {
   };
 
   validateField = () => {
-    if (
-      this.state.value.enabled &&
-      ((!this.state.value.useCta && (!this.state.value.url || this.state.value.url === '')) ||
-        (this.state.value.useCta && (!this.state.value.courseId || this.state.value.courseId === '')) ||
-        (this.state.value.useCta && (!this.state.value.sessionId || this.state.value.sessionId === '')))
-    ) {
+    if (this.state.value.enabled) {
       this.props.sdk.field.setInvalid(true);
       this.props.sdk.notifier.error(
         'Tutti i campi attivi devono essere compilati.'
@@ -180,7 +159,7 @@ export class App extends React.Component<AppProps, AppState> {
               <CheckboxField
                 name="fastBookingEnabled"
                 id="fastBookingEnabled"
-                labelText="Iscrizione rapida con form interno 24orebs senza registrazione e login"
+                labelText="Iscrizione con form interno senza registrazione e login"
                 checked={this.state.value.fastBooking}
                 onChange={this.fastBookingEnabledOnChangeHandler}
               />
@@ -193,8 +172,8 @@ export class App extends React.Component<AppProps, AppState> {
                 helpText="Inserire l’URL dell’evento della piattaforma Elearning oppure, abilitando l’apposita funzione, e’ possibile utilizzare un URL custom per eventi con prenotazione esterna a 24Ore BS"
                 textInputProps={
                   {
-                    disabled: this.state.value.fastBooking || this.state.value.useCta,
-                    required: !this.state.value.useCta
+                    disabled: this.state.value.fastBooking,
+                    required: !this.state.value.fastBooking
                   }
                 }
                 value={this.state.value.url}
@@ -207,55 +186,11 @@ export class App extends React.Component<AppProps, AppState> {
                 id="bookingLinkType"
                 labelText="Evento con iscrizione esterna alla piattaforma Elearning"
                 helpText="Se abilitato gli utenti vengono redirezionati direttamente alla destinazione senza il passaggio tramite il form predefinito d’iscrizione 24Ore BS"
-                disabled={this.state.value.fastBooking || this.state.value.useCta}
+                disabled={this.state.value.fastBooking}
                 checked={this.state.value.directLink}
                 onChange={this.bookingLinkTypeOnChangeHandler}
               />
             </FieldGroup>
-            <FieldGroup>
-              <CheckboxField
-                name="bookingCTA"
-                id="bookingCTA"
-                labelText="Use CTA Form Instead"
-                disabled={this.state.value.fastBooking}
-                checked={this.state.value.useCta}
-                onChange={this.bookingCTAOnChangeHandler}
-              />
-            </FieldGroup>
-            {this.state.value.useCta ? (
-              <div>
-                <FieldGroup>
-                  <TextField
-                    name="bookingCourseId"
-                    id="bookingCourseId"
-                    labelText="ID Corso Docebo"
-                    textInputProps={
-                      {
-                        disabled: this.state.value.fastBooking,
-                        required: this.state.value.useCta
-                      }
-                    }
-                    value={this.state.value.courseId}
-                    onChange={this.bookingCourseIdOnChangeHandler}
-                  />
-                </FieldGroup>
-                <FieldGroup>
-                  <TextField
-                    name="bookingSessionId"
-                    id="bookingSessionId"
-                    labelText="ID Sessione Docebo"
-                    textInputProps={
-                      {
-                        disabled: this.state.value.fastBooking,
-                        required: this.state.value.useCta
-                      }
-                    }
-                    value={this.state.value.sessionId}
-                    onChange={this.bookingSessionIdOnChangeHandler}
-                  />
-                </FieldGroup>
-              </div>
-            ) : null}
           </div>
         ) : null}
       </div>
