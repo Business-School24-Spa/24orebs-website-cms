@@ -1,0 +1,8 @@
+{
+  "id": "initiative-lp-booking-field",
+  "name": "initiative-lp-booking-field",
+  "srcdoc": "./build/index.html",
+  "fieldTypes": [
+    "Object"
+  ]
+}
