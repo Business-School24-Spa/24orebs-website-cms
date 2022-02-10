@@ -1,9 +1,8 @@
 import * as React from 'react';
 import { render } from 'react-dom';
-import { TextField, TextInput } from '@contentful/forma-36-react-components';
+import { TextField } from '@contentful/forma-36-react-components';
 import { init, FieldExtensionSDK } from 'contentful-ui-extensions-sdk';
 import '@contentful/forma-36-react-components/dist/styles.css';
-import './index.css';
 import { FieldGroup, CheckboxField } from '@contentful/forma-36-react-components';
 
 interface AppProps {
@@ -15,8 +14,6 @@ interface FieldValue {
   fastBooking: boolean;
   url: string;
   directLink: boolean;
-  courseId: string;
-  sessionId: string;
 }
 
 interface AppState {
@@ -27,9 +24,7 @@ const defaultData: FieldValue = {
   enabled: false,
   fastBooking: false,
   url: '',
-  directLink: false,
-  courseId: '',
-  sessionId: ''
+  directLink: false
 }
 
 export class App extends React.Component<AppProps, AppState> {
@@ -110,34 +105,23 @@ export class App extends React.Component<AppProps, AppState> {
     }
   };
 
-  bookingCourseIdOnChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    this.saveField({
-      ...this.state.value,
-      courseId: e.target.value,
-    });
-  };
-
-  bookingSessionIdOnChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    this.saveField({
-      ...this.state.value,
-      sessionId: e.target.value,
-    });
-  };
-
   saveField = async (value: FieldValue) => {
     this.setState({ value });
     await this.props.sdk.field.setValue(value);
+    this.validateField();
   };
 
   validateField = () => {
-    if (this.state.value.enabled) {
+    if (
+      this.state.value.enabled
+      && (this.state.value.fastBooking === false && this.state.value.directLink === false && this.state.value.url === '')
+    ) {
       this.props.sdk.field.setInvalid(true);
       this.props.sdk.notifier.error(
         'Tutti i campi attivi devono essere compilati.'
       );
       return;
     }
-    
     this.props.sdk.field.setInvalid(false);
   };
 
