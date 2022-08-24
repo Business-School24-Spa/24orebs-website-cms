@@ -1,0 +1,1153 @@
+[
+  {
+    "ts": "2022-08-05T16:03:24.261Z",
+    "level": "error",
+    "error": {
+      "name": "ValidationFailed",
+      "entity": {
+        "metadata": {
+          "tags": [
+          ]
+        },
+        "sys": {
+          "space": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Space",
+              "id": "fumyn2q16o4i"
+            }
+          },
+          "id": "3HEWhgGMwA65i3XrDERtLr",
+          "type": "Asset",
+          "createdAt": "2021-09-17T19:38:26.944Z",
+          "updatedAt": "2022-08-05T14:58:29.915Z",
+          "environment": {
+            "sys": {
+              "id": "master",
+              "type": "Link",
+              "linkType": "Environment"
+            }
+          },
+          "publishedVersion": 4,
+          "publishedAt": "2021-09-17T19:38:48.038Z",
+          "firstPublishedAt": "2021-09-17T19:38:48.038Z",
+          "createdBy": {
+            "sys": {
+              "type": "Link",
+              "linkType": "User",
+              "id": "0siXxwD5Z7qGemoKHleuOt"
+            }
+          },
+          "updatedBy": {
+            "sys": {
+              "type": "Link",
+              "linkType": "User",
+              "id": "2rq9VHOyj5fv2bJ0KOeMyy"
+            }
+          },
+          "publishedCounter": 1,
+          "version": 7,
+          "publishedBy": {
+            "sys": {
+              "type": "Link",
+              "linkType": "User",
+              "id": "0siXxwD5Z7qGemoKHleuOt"
+            }
+          }
+        },
+        "fields": {
+          "title": {
+            "it-IT": "Aule intelligenti"
+          },
+          "description": {
+            "it-IT": "Aule intelligenti"
+          }
+        }
+      },
+      "data": {
+        "status": 422,
+        "statusText": "Unprocessable Entity",
+        "message": "Validation error",
+        "details": {
+          "errors": [
+            {
+              "name": "noFileFields",
+              "details": "The asset has no files"
+            }
+          ]
+        },
+        "request": {
+          "url": "/spaces/fumyn2q16o4i/environments/master/assets/3HEWhgGMwA65i3XrDERtLr/published",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "Content-Type": "application/vnd.contentful.management.v1+json",
+            "X-Contentful-User-Agent": "app contentful.cli/1.12.21; feature space-import; sdk contentful-management.js/7.54.2; platform node.js/v14.17.0; os macOS/v14.17.0;",
+            "CF-Sequence": "3e99ebd8-4f8f-43d2-8d79-a835325ffc4a",
+            "Authorization": "Bearer ...mT5NU",
+            "user-agent": "node.js/v14.17.0",
+            "Accept-Encoding": "gzip",
+            "X-Contentful-Version": 7
+          },
+          "method": "put",
+          "payloadData": null
+        },
+        "requestId": "33c2ed7c-c358-4175-b774-95c7933ef92c"
+      }
+    }
+  },
+  {
+    "ts": "2022-08-05T16:04:30.515Z",
+    "level": "error",
+    "error": {
+      "name": "ValidationFailed",
+      "entity": {
+        "metadata": {
+          "tags": [
+          ]
+        },
+        "sys": {
+          "space": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Space",
+              "id": "fumyn2q16o4i"
+            }
+          },
+          "id": "5YbSixzvHBstOlfh2RO1Sy",
+          "type": "Asset",
+          "createdAt": "2022-01-18T09:27:50.642Z",
+          "updatedAt": "2022-08-05T14:58:59.944Z",
+          "environment": {
+            "sys": {
+              "id": "master",
+              "type": "Link",
+              "linkType": "Environment"
+            }
+          },
+          "publishedVersion": 4,
+          "publishedAt": "2022-01-18T09:28:10.059Z",
+          "firstPublishedAt": "2022-01-18T09:28:10.059Z",
+          "createdBy": {
+            "sys": {
+              "type": "Link",
+              "linkType": "User",
+              "id": "7BuPRocDdnrq13pGxIHuKw"
+            }
+          },
+          "updatedBy": {
+            "sys": {
+              "type": "Link",
+              "linkType": "User",
+              "id": "2rq9VHOyj5fv2bJ0KOeMyy"
+            }
+          },
+          "publishedCounter": 1,
+          "version": 7,
+          "publishedBy": {
+            "sys": {
+              "type": "Link",
+              "linkType": "User",
+              "id": "7BuPRocDdnrq13pGxIHuKw"
+            }
+          }
+        },
+        "fields": {
+          "title": {
+            "it-IT": "Entrare nel mondo del lavoro senza laurea"
+          },
+          "description": {
+            "it-IT": ""
+          }
+        }
+      },
+      "data": {
+        "status": 422,
+        "statusText": "Unprocessable Entity",
+        "message": "Validation error",
+        "details": {
+          "errors": [
+            {
+              "name": "noFileFields",
+              "details": "The asset has no files"
+            }
+          ]
+        },
+        "request": {
+          "url": "/spaces/fumyn2q16o4i/environments/master/assets/5YbSixzvHBstOlfh2RO1Sy/published",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "Content-Type": "application/vnd.contentful.management.v1+json",
+            "X-Contentful-User-Agent": "app contentful.cli/1.12.21; feature space-import; sdk contentful-management.js/7.54.2; platform node.js/v14.17.0; os macOS/v14.17.0;",
+            "CF-Sequence": "3e99ebd8-4f8f-43d2-8d79-a835325ffc4a",
+            "Authorization": "Bearer ...mT5NU",
+            "user-agent": "node.js/v14.17.0",
+            "Accept-Encoding": "gzip",
+            "X-Contentful-Version": 7
+          },
+          "method": "put",
+          "payloadData": null
+        },
+        "requestId": "c6072f9b-d8df-4192-b00f-d82db969c763"
+      }
+    }
+  },
+  {
+    "ts": "2022-08-05T16:04:31.028Z",
+    "level": "error",
+    "error": {
+      "name": "ValidationFailed",
+      "entity": {
+        "metadata": {
+          "tags": [
+          ]
+        },
+        "sys": {
+          "space": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Space",
+              "id": "fumyn2q16o4i"
+            }
+          },
+          "id": "2jELBXW2HvNxvPI3bPeP3V",
+          "type": "Asset",
+          "createdAt": "2022-01-18T09:30:19.118Z",
+          "updatedAt": "2022-08-05T14:58:59.936Z",
+          "environment": {
+            "sys": {
+              "id": "master",
+              "type": "Link",
+              "linkType": "Environment"
+            }
+          },
+          "publishedVersion": 4,
+          "publishedAt": "2022-01-18T09:30:36.837Z",
+          "firstPublishedAt": "2022-01-18T09:30:36.837Z",
+          "createdBy": {
+            "sys": {
+              "type": "Link",
+              "linkType": "User",
+              "id": "7BuPRocDdnrq13pGxIHuKw"
+            }
+          },
+          "updatedBy": {
+            "sys": {
+              "type": "Link",
+              "linkType": "User",
+              "id": "2rq9VHOyj5fv2bJ0KOeMyy"
+            }
+          },
+          "publishedCounter": 1,
+          "version": 7,
+          "publishedBy": {
+            "sys": {
+              "type": "Link",
+              "linkType": "User",
+              "id": "7BuPRocDdnrq13pGxIHuKw"
+            }
+          }
+        },
+        "fields": {
+          "title": {
+            "it-IT": "Entrare nel mondo del lavoro senza laurea MOB"
+          },
+          "description": {
+            "it-IT": ""
+          }
+        }
+      },
+      "data": {
+        "status": 422,
+        "statusText": "Unprocessable Entity",
+        "message": "Validation error",
+        "details": {
+          "errors": [
+            {
+              "name": "noFileFields",
+              "details": "The asset has no files"
+            }
+          ]
+        },
+        "request": {
+          "url": "/spaces/fumyn2q16o4i/environments/master/assets/2jELBXW2HvNxvPI3bPeP3V/published",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "Content-Type": "application/vnd.contentful.management.v1+json",
+            "X-Contentful-User-Agent": "app contentful.cli/1.12.21; feature space-import; sdk contentful-management.js/7.54.2; platform node.js/v14.17.0; os macOS/v14.17.0;",
+            "CF-Sequence": "3e99ebd8-4f8f-43d2-8d79-a835325ffc4a",
+            "Authorization": "Bearer ...mT5NU",
+            "user-agent": "node.js/v14.17.0",
+            "Accept-Encoding": "gzip",
+            "X-Contentful-Version": 7
+          },
+          "method": "put",
+          "payloadData": null
+        },
+        "requestId": "7846ed5f-67ee-4ff6-a861-cbe181e93872"
+      }
+    }
+  },
+  {
+    "ts": "2022-08-05T16:04:32.512Z",
+    "level": "error",
+    "error": {
+      "name": "ValidationFailed",
+      "entity": {
+        "metadata": {
+          "tags": [
+          ]
+        },
+        "sys": {
+          "space": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Space",
+              "id": "fumyn2q16o4i"
+            }
+          },
+          "id": "3XaO0KcZsNxnPKB5dn0uvA",
+          "type": "Asset",
+          "createdAt": "2022-01-19T12:13:41.265Z",
+          "updatedAt": "2022-08-05T14:59:00.896Z",
+          "environment": {
+            "sys": {
+              "id": "master",
+              "type": "Link",
+              "linkType": "Environment"
+            }
+          },
+          "publishedVersion": 3,
+          "publishedAt": "2022-01-19T12:14:12.420Z",
+          "firstPublishedAt": "2022-01-19T12:14:12.420Z",
+          "createdBy": {
+            "sys": {
+              "type": "Link",
+              "linkType": "User",
+              "id": "7BuPRocDdnrq13pGxIHuKw"
+            }
+          },
+          "updatedBy": {
+            "sys": {
+              "type": "Link",
+              "linkType": "User",
+              "id": "2rq9VHOyj5fv2bJ0KOeMyy"
+            }
+          },
+          "publishedCounter": 1,
+          "version": 6,
+          "publishedBy": {
+            "sys": {
+              "type": "Link",
+              "linkType": "User",
+              "id": "7BuPRocDdnrq13pGxIHuKw"
+            }
+          }
+        },
+        "fields": {
+          "title": {
+            "it-IT": "desk"
+          },
+          "description": {
+            "it-IT": ""
+          }
+        }
+      },
+      "data": {
+        "status": 422,
+        "statusText": "Unprocessable Entity",
+        "message": "Validation error",
+        "details": {
+          "errors": [
+            {
+              "name": "noFileFields",
+              "details": "The asset has no files"
+            }
+          ]
+        },
+        "request": {
+          "url": "/spaces/fumyn2q16o4i/environments/master/assets/3XaO0KcZsNxnPKB5dn0uvA/published",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "Content-Type": "application/vnd.contentful.management.v1+json",
+            "X-Contentful-User-Agent": "app contentful.cli/1.12.21; feature space-import; sdk contentful-management.js/7.54.2; platform node.js/v14.17.0; os macOS/v14.17.0;",
+            "CF-Sequence": "3e99ebd8-4f8f-43d2-8d79-a835325ffc4a",
+            "Authorization": "Bearer ...mT5NU",
+            "user-agent": "node.js/v14.17.0",
+            "Accept-Encoding": "gzip",
+            "X-Contentful-Version": 6
+          },
+          "method": "put",
+          "payloadData": null
+        },
+        "requestId": "db4b14fe-ea39-440b-9c48-02b6bd66f17d"
+      }
+    }
+  },
+  {
+    "ts": "2022-08-05T16:06:49.203Z",
+    "level": "error",
+    "error": {
+      "name": "ValidationFailed",
+      "entity": {
+        "metadata": {
+          "tags": [
+          ]
+        },
+        "sys": {
+          "space": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Space",
+              "id": "fumyn2q16o4i"
+            }
+          },
+          "id": "3nniv0lmYQFAdzkKH0vQ91",
+          "type": "Asset",
+          "createdAt": "2022-03-25T08:47:47.995Z",
+          "updatedAt": "2022-08-05T14:59:59.148Z",
+          "environment": {
+            "sys": {
+              "id": "master",
+              "type": "Link",
+              "linkType": "Environment"
+            }
+          },
+          "publishedVersion": 8,
+          "publishedAt": "2022-04-01T08:08:48.686Z",
+          "firstPublishedAt": "2022-03-25T08:48:36.031Z",
+          "createdBy": {
+            "sys": {
+              "type": "Link",
+              "linkType": "User",
+              "id": "7BuPRocDdnrq13pGxIHuKw"
+            }
+          },
+          "updatedBy": {
+            "sys": {
+              "type": "Link",
+              "linkType": "User",
+              "id": "2rq9VHOyj5fv2bJ0KOeMyy"
+            }
+          },
+          "publishedCounter": 2,
+          "version": 11,
+          "publishedBy": {
+            "sys": {
+              "type": "Link",
+              "linkType": "User",
+              "id": "7BuPRocDdnrq13pGxIHuKw"
+            }
+          }
+        },
+        "fields": {
+          "title": {
+            "it-IT": "ew def desk"
+          }
+        }
+      },
+      "data": {
+        "status": 422,
+        "statusText": "Unprocessable Entity",
+        "message": "Validation error",
+        "details": {
+          "errors": [
+            {
+              "name": "noFileFields",
+              "details": "The asset has no files"
+            }
+          ]
+        },
+        "request": {
+          "url": "/spaces/fumyn2q16o4i/environments/master/assets/3nniv0lmYQFAdzkKH0vQ91/published",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "Content-Type": "application/vnd.contentful.management.v1+json",
+            "X-Contentful-User-Agent": "app contentful.cli/1.12.21; feature space-import; sdk contentful-management.js/7.54.2; platform node.js/v14.17.0; os macOS/v14.17.0;",
+            "CF-Sequence": "3e99ebd8-4f8f-43d2-8d79-a835325ffc4a",
+            "Authorization": "Bearer ...mT5NU",
+            "user-agent": "node.js/v14.17.0",
+            "Accept-Encoding": "gzip",
+            "X-Contentful-Version": 11
+          },
+          "method": "put",
+          "payloadData": null
+        },
+        "requestId": "5ec913eb-c5b8-4e5e-b227-18999d30bd41"
+      }
+    }
+  },
+  {
+    "ts": "2022-08-05T16:06:58.911Z",
+    "level": "error",
+    "error": {
+      "name": "ValidationFailed",
+      "entity": {
+        "metadata": {
+          "tags": [
+          ]
+        },
+        "sys": {
+          "space": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Space",
+              "id": "fumyn2q16o4i"
+            }
+          },
+          "id": "2IXaKzUZZ3Aq0eAJv3BVoI",
+          "type": "Asset",
+          "createdAt": "2022-03-31T15:32:07.137Z",
+          "updatedAt": "2022-08-05T15:00:04.020Z",
+          "environment": {
+            "sys": {
+              "id": "master",
+              "type": "Link",
+              "linkType": "Environment"
+            }
+          },
+          "publishedVersion": 20,
+          "publishedAt": "2022-04-01T06:33:51.483Z",
+          "firstPublishedAt": "2022-03-31T15:33:03.595Z",
+          "createdBy": {
+            "sys": {
+              "type": "Link",
+              "linkType": "User",
+              "id": "7BuPRocDdnrq13pGxIHuKw"
+            }
+          },
+          "updatedBy": {
+            "sys": {
+              "type": "Link",
+              "linkType": "User",
+              "id": "2rq9VHOyj5fv2bJ0KOeMyy"
+            }
+          },
+          "publishedCounter": 5,
+          "version": 23,
+          "publishedBy": {
+            "sys": {
+              "type": "Link",
+              "linkType": "User",
+              "id": "7BuPRocDdnrq13pGxIHuKw"
+            }
+          }
+        },
+        "fields": {
+          "title": {
+            "it-IT": "Hero-desktop-Edu"
+          },
+          "description": {
+            "it-IT": ""
+          }
+        }
+      },
+      "data": {
+        "status": 422,
+        "statusText": "Unprocessable Entity",
+        "message": "Validation error",
+        "details": {
+          "errors": [
+            {
+              "name": "noFileFields",
+              "details": "The asset has no files"
+            }
+          ]
+        },
+        "request": {
+          "url": "/spaces/fumyn2q16o4i/environments/master/assets/2IXaKzUZZ3Aq0eAJv3BVoI/published",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "Content-Type": "application/vnd.contentful.management.v1+json",
+            "X-Contentful-User-Agent": "app contentful.cli/1.12.21; feature space-import; sdk contentful-management.js/7.54.2; platform node.js/v14.17.0; os macOS/v14.17.0;",
+            "CF-Sequence": "3e99ebd8-4f8f-43d2-8d79-a835325ffc4a",
+            "Authorization": "Bearer ...mT5NU",
+            "user-agent": "node.js/v14.17.0",
+            "Accept-Encoding": "gzip",
+            "X-Contentful-Version": 23
+          },
+          "method": "put",
+          "payloadData": null
+        },
+        "requestId": "c910e642-bf3c-4f14-9362-21f1b9ef0c3e"
+      }
+    }
+  },
+  {
+    "ts": "2022-08-05T16:09:42.722Z",
+    "level": "error",
+    "error": {
+      "name": "ValidationFailed",
+      "entity": {
+        "metadata": {
+          "tags": [
+          ]
+        },
+        "sys": {
+          "space": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Space",
+              "id": "fumyn2q16o4i"
+            }
+          },
+          "id": "3HEWhgGMwA65i3XrDERtLr",
+          "type": "Asset",
+          "createdAt": "2021-09-17T19:38:26.944Z",
+          "updatedAt": "2022-08-05T14:58:29.915Z",
+          "environment": {
+            "sys": {
+              "id": "master",
+              "type": "Link",
+              "linkType": "Environment"
+            }
+          },
+          "publishedVersion": 4,
+          "publishedAt": "2021-09-17T19:38:48.038Z",
+          "firstPublishedAt": "2021-09-17T19:38:48.038Z",
+          "createdBy": {
+            "sys": {
+              "type": "Link",
+              "linkType": "User",
+              "id": "0siXxwD5Z7qGemoKHleuOt"
+            }
+          },
+          "updatedBy": {
+            "sys": {
+              "type": "Link",
+              "linkType": "User",
+              "id": "2rq9VHOyj5fv2bJ0KOeMyy"
+            }
+          },
+          "publishedCounter": 1,
+          "version": 7,
+          "publishedBy": {
+            "sys": {
+              "type": "Link",
+              "linkType": "User",
+              "id": "0siXxwD5Z7qGemoKHleuOt"
+            }
+          }
+        },
+        "fields": {
+          "title": {
+            "it-IT": "Aule intelligenti"
+          },
+          "description": {
+            "it-IT": "Aule intelligenti"
+          }
+        }
+      },
+      "data": {
+        "status": 422,
+        "statusText": "Unprocessable Entity",
+        "message": "Validation error",
+        "details": {
+          "errors": [
+            {
+              "name": "noFileFields",
+              "details": "The asset has no files"
+            }
+          ]
+        },
+        "request": {
+          "url": "/spaces/fumyn2q16o4i/environments/master/assets/3HEWhgGMwA65i3XrDERtLr/published",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "Content-Type": "application/vnd.contentful.management.v1+json",
+            "X-Contentful-User-Agent": "app contentful.cli/1.12.21; feature space-import; sdk contentful-management.js/7.54.2; platform node.js/v14.17.0; os macOS/v14.17.0;",
+            "CF-Sequence": "3e99ebd8-4f8f-43d2-8d79-a835325ffc4a",
+            "Authorization": "Bearer ...mT5NU",
+            "user-agent": "node.js/v14.17.0",
+            "Accept-Encoding": "gzip",
+            "X-Contentful-Version": 7
+          },
+          "method": "put",
+          "payloadData": null
+        },
+        "requestId": "6caa2544-3f2b-4cab-aef1-f580aebc5661"
+      }
+    }
+  },
+  {
+    "ts": "2022-08-05T16:09:42.973Z",
+    "level": "error",
+    "error": {
+      "name": "ValidationFailed",
+      "entity": {
+        "metadata": {
+          "tags": [
+          ]
+        },
+        "sys": {
+          "space": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Space",
+              "id": "fumyn2q16o4i"
+            }
+          },
+          "id": "5YbSixzvHBstOlfh2RO1Sy",
+          "type": "Asset",
+          "createdAt": "2022-01-18T09:27:50.642Z",
+          "updatedAt": "2022-08-05T14:58:59.944Z",
+          "environment": {
+            "sys": {
+              "id": "master",
+              "type": "Link",
+              "linkType": "Environment"
+            }
+          },
+          "publishedVersion": 4,
+          "publishedAt": "2022-01-18T09:28:10.059Z",
+          "firstPublishedAt": "2022-01-18T09:28:10.059Z",
+          "createdBy": {
+            "sys": {
+              "type": "Link",
+              "linkType": "User",
+              "id": "7BuPRocDdnrq13pGxIHuKw"
+            }
+          },
+          "updatedBy": {
+            "sys": {
+              "type": "Link",
+              "linkType": "User",
+              "id": "2rq9VHOyj5fv2bJ0KOeMyy"
+            }
+          },
+          "publishedCounter": 1,
+          "version": 7,
+          "publishedBy": {
+            "sys": {
+              "type": "Link",
+              "linkType": "User",
+              "id": "7BuPRocDdnrq13pGxIHuKw"
+            }
+          }
+        },
+        "fields": {
+          "title": {
+            "it-IT": "Entrare nel mondo del lavoro senza laurea"
+          },
+          "description": {
+            "it-IT": ""
+          }
+        }
+      },
+      "data": {
+        "status": 422,
+        "statusText": "Unprocessable Entity",
+        "message": "Validation error",
+        "details": {
+          "errors": [
+            {
+              "name": "noFileFields",
+              "details": "The asset has no files"
+            }
+          ]
+        },
+        "request": {
+          "url": "/spaces/fumyn2q16o4i/environments/master/assets/5YbSixzvHBstOlfh2RO1Sy/published",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "Content-Type": "application/vnd.contentful.management.v1+json",
+            "X-Contentful-User-Agent": "app contentful.cli/1.12.21; feature space-import; sdk contentful-management.js/7.54.2; platform node.js/v14.17.0; os macOS/v14.17.0;",
+            "CF-Sequence": "3e99ebd8-4f8f-43d2-8d79-a835325ffc4a",
+            "Authorization": "Bearer ...mT5NU",
+            "user-agent": "node.js/v14.17.0",
+            "Accept-Encoding": "gzip",
+            "X-Contentful-Version": 7
+          },
+          "method": "put",
+          "payloadData": null
+        },
+        "requestId": "bde645ae-07f9-47d4-bd6f-c470a98e75f3"
+      }
+    }
+  },
+  {
+    "ts": "2022-08-05T16:09:43.201Z",
+    "level": "error",
+    "error": {
+      "name": "ValidationFailed",
+      "entity": {
+        "metadata": {
+          "tags": [
+          ]
+        },
+        "sys": {
+          "space": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Space",
+              "id": "fumyn2q16o4i"
+            }
+          },
+          "id": "2jELBXW2HvNxvPI3bPeP3V",
+          "type": "Asset",
+          "createdAt": "2022-01-18T09:30:19.118Z",
+          "updatedAt": "2022-08-05T14:58:59.936Z",
+          "environment": {
+            "sys": {
+              "id": "master",
+              "type": "Link",
+              "linkType": "Environment"
+            }
+          },
+          "publishedVersion": 4,
+          "publishedAt": "2022-01-18T09:30:36.837Z",
+          "firstPublishedAt": "2022-01-18T09:30:36.837Z",
+          "createdBy": {
+            "sys": {
+              "type": "Link",
+              "linkType": "User",
+              "id": "7BuPRocDdnrq13pGxIHuKw"
+            }
+          },
+          "updatedBy": {
+            "sys": {
+              "type": "Link",
+              "linkType": "User",
+              "id": "2rq9VHOyj5fv2bJ0KOeMyy"
+            }
+          },
+          "publishedCounter": 1,
+          "version": 7,
+          "publishedBy": {
+            "sys": {
+              "type": "Link",
+              "linkType": "User",
+              "id": "7BuPRocDdnrq13pGxIHuKw"
+            }
+          }
+        },
+        "fields": {
+          "title": {
+            "it-IT": "Entrare nel mondo del lavoro senza laurea MOB"
+          },
+          "description": {
+            "it-IT": ""
+          }
+        }
+      },
+      "data": {
+        "status": 422,
+        "statusText": "Unprocessable Entity",
+        "message": "Validation error",
+        "details": {
+          "errors": [
+            {
+              "name": "noFileFields",
+              "details": "The asset has no files"
+            }
+          ]
+        },
+        "request": {
+          "url": "/spaces/fumyn2q16o4i/environments/master/assets/2jELBXW2HvNxvPI3bPeP3V/published",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "Content-Type": "application/vnd.contentful.management.v1+json",
+            "X-Contentful-User-Agent": "app contentful.cli/1.12.21; feature space-import; sdk contentful-management.js/7.54.2; platform node.js/v14.17.0; os macOS/v14.17.0;",
+            "CF-Sequence": "3e99ebd8-4f8f-43d2-8d79-a835325ffc4a",
+            "Authorization": "Bearer ...mT5NU",
+            "user-agent": "node.js/v14.17.0",
+            "Accept-Encoding": "gzip",
+            "X-Contentful-Version": 7
+          },
+          "method": "put",
+          "payloadData": null
+        },
+        "requestId": "9d3a331f-34cd-475c-8531-59aaadb706ff"
+      }
+    }
+  },
+  {
+    "ts": "2022-08-05T16:09:43.485Z",
+    "level": "error",
+    "error": {
+      "name": "ValidationFailed",
+      "entity": {
+        "metadata": {
+          "tags": [
+          ]
+        },
+        "sys": {
+          "space": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Space",
+              "id": "fumyn2q16o4i"
+            }
+          },
+          "id": "3XaO0KcZsNxnPKB5dn0uvA",
+          "type": "Asset",
+          "createdAt": "2022-01-19T12:13:41.265Z",
+          "updatedAt": "2022-08-05T14:59:00.896Z",
+          "environment": {
+            "sys": {
+              "id": "master",
+              "type": "Link",
+              "linkType": "Environment"
+            }
+          },
+          "publishedVersion": 3,
+          "publishedAt": "2022-01-19T12:14:12.420Z",
+          "firstPublishedAt": "2022-01-19T12:14:12.420Z",
+          "createdBy": {
+            "sys": {
+              "type": "Link",
+              "linkType": "User",
+              "id": "7BuPRocDdnrq13pGxIHuKw"
+            }
+          },
+          "updatedBy": {
+            "sys": {
+              "type": "Link",
+              "linkType": "User",
+              "id": "2rq9VHOyj5fv2bJ0KOeMyy"
+            }
+          },
+          "publishedCounter": 1,
+          "version": 6,
+          "publishedBy": {
+            "sys": {
+              "type": "Link",
+              "linkType": "User",
+              "id": "7BuPRocDdnrq13pGxIHuKw"
+            }
+          }
+        },
+        "fields": {
+          "title": {
+            "it-IT": "desk"
+          },
+          "description": {
+            "it-IT": ""
+          }
+        }
+      },
+      "data": {
+        "status": 422,
+        "statusText": "Unprocessable Entity",
+        "message": "Validation error",
+        "details": {
+          "errors": [
+            {
+              "name": "noFileFields",
+              "details": "The asset has no files"
+            }
+          ]
+        },
+        "request": {
+          "url": "/spaces/fumyn2q16o4i/environments/master/assets/3XaO0KcZsNxnPKB5dn0uvA/published",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "Content-Type": "application/vnd.contentful.management.v1+json",
+            "X-Contentful-User-Agent": "app contentful.cli/1.12.21; feature space-import; sdk contentful-management.js/7.54.2; platform node.js/v14.17.0; os macOS/v14.17.0;",
+            "CF-Sequence": "3e99ebd8-4f8f-43d2-8d79-a835325ffc4a",
+            "Authorization": "Bearer ...mT5NU",
+            "user-agent": "node.js/v14.17.0",
+            "Accept-Encoding": "gzip",
+            "X-Contentful-Version": 6
+          },
+          "method": "put",
+          "payloadData": null
+        },
+        "requestId": "22ec3152-8cb8-4d2a-96c8-36becef71f55"
+      }
+    }
+  },
+  {
+    "ts": "2022-08-05T16:09:43.713Z",
+    "level": "error",
+    "error": {
+      "name": "ValidationFailed",
+      "entity": {
+        "metadata": {
+          "tags": [
+          ]
+        },
+        "sys": {
+          "space": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Space",
+              "id": "fumyn2q16o4i"
+            }
+          },
+          "id": "3nniv0lmYQFAdzkKH0vQ91",
+          "type": "Asset",
+          "createdAt": "2022-03-25T08:47:47.995Z",
+          "updatedAt": "2022-08-05T14:59:59.148Z",
+          "environment": {
+            "sys": {
+              "id": "master",
+              "type": "Link",
+              "linkType": "Environment"
+            }
+          },
+          "publishedVersion": 8,
+          "publishedAt": "2022-04-01T08:08:48.686Z",
+          "firstPublishedAt": "2022-03-25T08:48:36.031Z",
+          "createdBy": {
+            "sys": {
+              "type": "Link",
+              "linkType": "User",
+              "id": "7BuPRocDdnrq13pGxIHuKw"
+            }
+          },
+          "updatedBy": {
+            "sys": {
+              "type": "Link",
+              "linkType": "User",
+              "id": "2rq9VHOyj5fv2bJ0KOeMyy"
+            }
+          },
+          "publishedCounter": 2,
+          "version": 11,
+          "publishedBy": {
+            "sys": {
+              "type": "Link",
+              "linkType": "User",
+              "id": "7BuPRocDdnrq13pGxIHuKw"
+            }
+          }
+        },
+        "fields": {
+          "title": {
+            "it-IT": "ew def desk"
+          }
+        }
+      },
+      "data": {
+        "status": 422,
+        "statusText": "Unprocessable Entity",
+        "message": "Validation error",
+        "details": {
+          "errors": [
+            {
+              "name": "noFileFields",
+              "details": "The asset has no files"
+            }
+          ]
+        },
+        "request": {
+          "url": "/spaces/fumyn2q16o4i/environments/master/assets/3nniv0lmYQFAdzkKH0vQ91/published",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "Content-Type": "application/vnd.contentful.management.v1+json",
+            "X-Contentful-User-Agent": "app contentful.cli/1.12.21; feature space-import; sdk contentful-management.js/7.54.2; platform node.js/v14.17.0; os macOS/v14.17.0;",
+            "CF-Sequence": "3e99ebd8-4f8f-43d2-8d79-a835325ffc4a",
+            "Authorization": "Bearer ...mT5NU",
+            "user-agent": "node.js/v14.17.0",
+            "Accept-Encoding": "gzip",
+            "X-Contentful-Version": 11
+          },
+          "method": "put",
+          "payloadData": null
+        },
+        "requestId": "aa17c08e-c1a0-44bd-b418-639771f6c127"
+      }
+    }
+  },
+  {
+    "ts": "2022-08-05T16:09:43.947Z",
+    "level": "error",
+    "error": {
+      "name": "ValidationFailed",
+      "entity": {
+        "metadata": {
+          "tags": [
+          ]
+        },
+        "sys": {
+          "space": {
+            "sys": {
+              "type": "Link",
+              "linkType": "Space",
+              "id": "fumyn2q16o4i"
+            }
+          },
+          "id": "2IXaKzUZZ3Aq0eAJv3BVoI",
+          "type": "Asset",
+          "createdAt": "2022-03-31T15:32:07.137Z",
+          "updatedAt": "2022-08-05T15:00:04.020Z",
+          "environment": {
+            "sys": {
+              "id": "master",
+              "type": "Link",
+              "linkType": "Environment"
+            }
+          },
+          "publishedVersion": 20,
+          "publishedAt": "2022-04-01T06:33:51.483Z",
+          "firstPublishedAt": "2022-03-31T15:33:03.595Z",
+          "createdBy": {
+            "sys": {
+              "type": "Link",
+              "linkType": "User",
+              "id": "7BuPRocDdnrq13pGxIHuKw"
+            }
+          },
+          "updatedBy": {
+            "sys": {
+              "type": "Link",
+              "linkType": "User",
+              "id": "2rq9VHOyj5fv2bJ0KOeMyy"
+            }
+          },
+          "publishedCounter": 5,
+          "version": 23,
+          "publishedBy": {
+            "sys": {
+              "type": "Link",
+              "linkType": "User",
+              "id": "7BuPRocDdnrq13pGxIHuKw"
+            }
+          }
+        },
+        "fields": {
+          "title": {
+            "it-IT": "Hero-desktop-Edu"
+          },
+          "description": {
+            "it-IT": ""
+          }
+        }
+      },
+      "data": {
+        "status": 422,
+        "statusText": "Unprocessable Entity",
+        "message": "Validation error",
+        "details": {
+          "errors": [
+            {
+              "name": "noFileFields",
+              "details": "The asset has no files"
+            }
+          ]
+        },
+        "request": {
+          "url": "/spaces/fumyn2q16o4i/environments/master/assets/2IXaKzUZZ3Aq0eAJv3BVoI/published",
+          "headers": {
+            "Accept": "application/json, text/plain, */*",
+            "Content-Type": "application/vnd.contentful.management.v1+json",
+            "X-Contentful-User-Agent": "app contentful.cli/1.12.21; feature space-import; sdk contentful-management.js/7.54.2; platform node.js/v14.17.0; os macOS/v14.17.0;",
+            "CF-Sequence": "3e99ebd8-4f8f-43d2-8d79-a835325ffc4a",
+            "Authorization": "Bearer ...mT5NU",
+            "user-agent": "node.js/v14.17.0",
+            "Accept-Encoding": "gzip",
+            "X-Contentful-Version": 23
+          },
+          "method": "put",
+          "payloadData": null
+        },
+        "requestId": "6c833691-8264-4d8e-a0d2-7040f8c682b9"
+      }
+    }
+  },
+  {
+    "ts": "2022-08-05T16:09:43.948Z",
+    "level": "error",
+    "error": "Could not publish the following entities: Aule intelligenti (3HEWhgGMwA65i3XrDERtLr), Entrare nel mondo del lavoro senza laurea (5YbSixzvHBstOlfh2RO1Sy), Entrare nel mondo del lavoro senza laurea MOB (2jELBXW2HvNxvPI3bPeP3V), desk (3XaO0KcZsNxnPKB5dn0uvA), ew def desk (3nniv0lmYQFAdzkKH0vQ91), Hero-desktop-Edu (2IXaKzUZZ3Aq0eAJv3BVoI)"
+  }
+]

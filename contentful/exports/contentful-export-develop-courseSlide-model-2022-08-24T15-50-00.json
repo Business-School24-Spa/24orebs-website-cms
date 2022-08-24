@@ -1,0 +1,203 @@
+{
+  "contentTypes": [
+    {
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "fumyn2q16o4i"
+          }
+        },
+        "id": "homepageSlides",
+        "type": "ContentType",
+        "createdAt": "2022-08-19T14:26:35.516Z",
+        "updatedAt": "2022-08-22T07:45:36.471Z",
+        "environment": {
+          "sys": {
+            "id": "develop",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 3,
+        "publishedAt": "2022-08-22T07:45:36.471Z",
+        "firstPublishedAt": "2022-08-19T14:26:35.979Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "2rq9VHOyj5fv2bJ0KOeMyy"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "2rq9VHOyj5fv2bJ0KOeMyy"
+          }
+        },
+        "publishedCounter": 2,
+        "version": 4,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "2rq9VHOyj5fv2bJ0KOeMyy"
+          }
+        }
+      },
+      "displayField": "title",
+      "name": "Homepage Slides",
+      "description": "",
+      "fields": [
+        {
+          "id": "title",
+          "name": "Titolo",
+          "type": "Symbol",
+          "localized": false,
+          "required": true,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "slideType",
+          "name": "Tipologia della Slide",
+          "type": "Link",
+          "localized": false,
+          "required": true,
+          "validations": [
+            {
+              "linkContentType": [
+                "courseSlide",
+                "hero"
+              ]
+            }
+          ],
+          "disabled": false,
+          "omitted": false,
+          "linkType": "Entry"
+        }
+      ]
+    },
+    {
+      "sys": {
+        "space": {
+          "sys": {
+            "type": "Link",
+            "linkType": "Space",
+            "id": "fumyn2q16o4i"
+          }
+        },
+        "id": "courseSlide",
+        "type": "ContentType",
+        "createdAt": "2022-08-22T07:36:00.114Z",
+        "updatedAt": "2022-08-22T10:57:00.214Z",
+        "environment": {
+          "sys": {
+            "id": "develop",
+            "type": "Link",
+            "linkType": "Environment"
+          }
+        },
+        "publishedVersion": 15,
+        "publishedAt": "2022-08-22T10:57:00.214Z",
+        "firstPublishedAt": "2022-08-22T07:36:00.512Z",
+        "createdBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "2rq9VHOyj5fv2bJ0KOeMyy"
+          }
+        },
+        "updatedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "2rq9VHOyj5fv2bJ0KOeMyy"
+          }
+        },
+        "publishedCounter": 8,
+        "version": 16,
+        "publishedBy": {
+          "sys": {
+            "type": "Link",
+            "linkType": "User",
+            "id": "2rq9VHOyj5fv2bJ0KOeMyy"
+          }
+        }
+      },
+      "displayField": "title",
+      "name": "Slide di prodotto",
+      "description": "",
+      "fields": [
+        {
+          "id": "title",
+          "name": "Titolo",
+          "type": "Symbol",
+          "localized": false,
+          "required": true,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "productCode",
+          "name": "Codice commessa prodotto",
+          "type": "Symbol",
+          "localized": false,
+          "required": true,
+          "validations": [
+            {
+              "regexp": {
+                "pattern": "^([A-Z]{2}\\d{8})$",
+                "flags": null
+              }
+            }
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "priceView",
+          "name": "Mostrare il prezzo",
+          "type": "Boolean",
+          "localized": false,
+          "required": true,
+          "validations": [
+          ],
+          "defaultValue": {
+            "it-IT": true
+          },
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "buttonLink",
+          "name": "Comportamento bottone",
+          "type": "Boolean",
+          "localized": false,
+          "required": true,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        },
+        {
+          "id": "buttonText",
+          "name": "Testo bottone",
+          "type": "Symbol",
+          "localized": false,
+          "required": false,
+          "validations": [
+          ],
+          "disabled": false,
+          "omitted": false
+        }
+      ]
+    }
+  ]
+}
