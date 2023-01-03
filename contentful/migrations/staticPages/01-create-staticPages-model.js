@@ -37,6 +37,8 @@ module.exports = function (migration) {
         .disabled(false)
         .omitted(false);
 
+    staticPages.changeFieldControl('destinationVisibilities', 'builtin', 'checkbox');
+
     staticPages.createField('metaTagSocialImage')
         .name('Meta tag: Immagine social')
         .type('Link')
@@ -62,4 +64,6 @@ module.exports = function (migration) {
         ])
         .disabled(false)
         .omitted(false);
+
+    staticPages.changeFieldControl('metaTagSocialDescription', 'builtin', 'multipleLine');
 }
