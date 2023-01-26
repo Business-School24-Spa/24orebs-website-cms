@@ -2,11 +2,12 @@ import React from 'react';
 import { Button, Grid, HelpText, ValidationMessage } from '@contentful/f36-components';
 import { FieldExtensionSDK } from '@contentful/app-sdk';
 import { /* useCMA, */ useSDK } from '@contentful/react-apps-toolkit';
+import { DeleteIcon } from '@contentful/f36-icons';
 
 const CHOOSE_FILE_TEXT = 'Scegli un file';
 
 const Field = () => {
-  const sdk = useSDK<FieldExtensionSDK>();
+  const {entry, parameters, dialogs, window} = useSDK<FieldExtensionSDK>();
   /*
      To use the cma, inject it as follows.
      If it is not needed, you can remove the next line.
@@ -15,20 +16,25 @@ const Field = () => {
   // If you only want to extend Contentful's default editing experience
   // reuse Contentful's editor components
   // -> https://www.contentful.com/developers/docs/extensibility/field-editors/
-
+  const fieldWrapper = React.useRef<HTMLInputElement>(null);
   const hiddenFileInput = React.useRef<HTMLInputElement>(null);
   const [validationError, setValidationError] = React.useState<string>('');
   const [buttonText, setButtonText] = React.useState(CHOOSE_FILE_TEXT);
   const [fileUploaded, setFileUploaded] = React.useState<File | null>(null);
   const [tags, setTags] = React.useState<string[]>([]);
+  const [showDeleteButton, setShowDeleteButton] = React.useState<boolean>(entry.fields[parameters.instance.destinationFieldId].getValue() ? true : false);
 
   const allowedExtensions = /(\.txt)$/i; // /(\.txt|\.csv)$/i;
 
-  const handleClick = () => {
+  const handleChooseFileClick = () => {
     if (!hiddenFileInput.current) {
       return;
     }
     hiddenFileInput.current.click();
+  };
+
+  const handleInputClick = (event: React.MouseEvent<HTMLInputElement>) => {
+    event.currentTarget.value = '';
   };
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -42,31 +48,95 @@ const Field = () => {
     const tmpFileUploaded = event.target.files[0];
     setFileUploaded(tmpFileUploaded);
     setButtonText(tmpFileUploaded.name);
+    const fileReader = new FileReader();
+    fileReader.onloadend = handleFileRead;
+    fileReader.readAsText(tmpFileUploaded);
+  }
+
+  const removeDuplicates = (arr: string[]) => {
+    return arr.filter((item, index) => arr.indexOf(item) === index);
+  }
+
+  const removeEmpty = (arr: string[]) => {
+    return arr.filter((item) => item.trim() !== '');
   }
 
   const handleFileRead = (e: ProgressEvent<FileReader>) => {
     if (!e.target) {
       return;
     }
-    setTags(e.target.result?.toString().split('\n') || []);
-  }
-
-  const handleClickOk = () => {
-    if (!fileUploaded) {
-      setValidationError('Nessun file caricato');
+    let tempTags = e.target.result?.toString().split('\n') || [];
+    if (tempTags?.length < 0) {
       return;
     }
-    setValidationError('');
-    const fileReader = new FileReader();
-    fileReader.onloadend = handleFileRead;
-    fileReader.readAsText(fileUploaded);
-    
-    sdk.entry.fields[sdk.parameters.instance.destinationFieldId].setValue(tags.filter(tag => tag !== ''));
+    tempTags = removeDuplicates(tempTags);
+    tempTags = removeEmpty(tempTags);
+
+    if (tempTags?.length < 1 || tempTags?.length > 1000) {
+      tempTags?.length < 1 && setValidationError('File vuoto.');
+      tempTags?.length > 1000 && setValidationError('Massimo 1000 keywords.');
+      setButtonText(CHOOSE_FILE_TEXT);
+      setFileUploaded(null);
+      return;
+    }
+    setTags(tempTags);
   }
 
+  const handleImportClick = () => {
+    dialogs.openConfirm({
+      title: 'Importa keywords',
+      message: `Sei sicuro di voler importare ${tags ? tags.length : 0} keywords? Questa azione cancellerà eventuali keywords già presenti nel campo.`,
+      intent: 'positive',
+      confirmLabel: 'Importa',
+      cancelLabel: 'Annulla',
+      shouldCloseOnEscapePress: true,
+      shouldCloseOnOverlayClick: true
+    }).then((result) => {
+      if (result) {
+        entry.fields[parameters.instance.destinationFieldId].setValue(tags);
+      }
+    });
+  }
+
+  const handleDeleteClick = () => {
+    dialogs.openConfirm({
+      title: 'Cancella keywords',
+      message: 'Sei sicuro di voler cancellare tutte le keywords?',
+      intent: 'negative',
+      confirmLabel: 'Cancella',
+      cancelLabel: 'Annulla',
+      shouldCloseOnEscapePress: true,
+      shouldCloseOnOverlayClick: true
+    }).then((result) => {
+      if (result) {
+        setTags([])
+        entry.fields[parameters.instance.destinationFieldId].setValue([]);
+      }
+    });
+  }
+
+  React.useEffect(() => {
+    if (!fieldWrapper.current) {
+      return;
+    }
+    const resizeObserver = new ResizeObserver(() => {
+      window.updateHeight();
+    });
+    resizeObserver.observe(fieldWrapper.current);
+    return () => {
+      resizeObserver.disconnect();
+    }
+  }, [fieldWrapper, window]);
+
+  React.useEffect(() => {
+    entry.fields[parameters.instance.destinationFieldId].onValueChanged((value) => {
+      setShowDeleteButton(value?.length > 0 ? true : false);
+    });
+  }, [entry, parameters.instance.destinationFieldId]);
+
   return (
-    <Grid rowGap="spacingXs" rows="repeat(4, auto)" justifyContent="start">
-      <Button onClick={handleClick}>
+    <Grid ref={fieldWrapper} rowGap="spacingXs" rows="repeat(4, auto)" justifyContent="start">
+      <Button onClick={handleChooseFileClick}>
         {buttonText}
       </Button>
       <input
@@ -74,10 +144,13 @@ const Field = () => {
         type="file"
         style={{ display: 'none' }}
         onChange={handleChange}
+        onClick={handleInputClick}
       />
-      {fileUploaded && <Button variant="primary" onClick={handleClickOk}>Importa keywords</Button>}
-      <HelpText>Carica un file .txt, ogni riga deve contenere un tag.</HelpText>
+      {fileUploaded && <Button variant="primary" onClick={handleImportClick}>Importa keywords</Button>}
+      <HelpText>Carica un file .txt, ogni riga deve contenere un tag. Massimo 1000 keywords.</HelpText>
       {validationError && validationError !== '' && <ValidationMessage>{validationError}</ValidationMessage>}
+
+      {showDeleteButton && <Button variant="negative" startIcon={<DeleteIcon />} onClick={handleDeleteClick}>Cancella keywords</Button>}
     </Grid>
   );
 };
