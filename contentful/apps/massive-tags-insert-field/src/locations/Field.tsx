@@ -65,20 +65,35 @@ const Field = () => {
     if (!e.target) {
       return;
     }
-    let tempTags = e.target.result?.toString().split('\n') || [];
+    let tempTags = e.target.result?.toString().split(/[\r\n]+/) || [];
     if (tempTags?.length < 0) {
       return;
     }
     tempTags = removeDuplicates(tempTags);
     tempTags = removeEmpty(tempTags);
 
+    // check if tags aren't more than 1000
     if (tempTags?.length < 1 || tempTags?.length > 1000) {
+
       tempTags?.length < 1 && setValidationError('File vuoto.');
       tempTags?.length > 1000 && setValidationError('Massimo 1000 keywords.');
+
       setButtonText(CHOOSE_FILE_TEXT);
       setFileUploaded(null);
       return;
     }
+
+
+    const regex = /^[^&|?=\\/.,:;<>()[\]{}!]*$/;
+    const invalidTags = tempTags.filter((tag) => !regex.test(tag));
+    if (invalidTags?.length > 0) {
+      setValidationError(`Le seguenti keywords non sono valide:\n${invalidTags.join(',\n')}\nLe keywords devono contenere solo lettere, numeri, spazi e trattini.`);
+      setButtonText(CHOOSE_FILE_TEXT);
+      setFileUploaded(null);
+      return;
+    }
+
+
     setTags(tempTags);
   }
 
@@ -148,7 +163,7 @@ const Field = () => {
       />
       {fileUploaded && <Button variant="primary" onClick={handleImportClick}>Importa keywords</Button>}
       <HelpText>Carica un file .txt, ogni riga deve contenere un tag. Massimo 1000 keywords.</HelpText>
-      {validationError && validationError !== '' && <ValidationMessage>{validationError}</ValidationMessage>}
+      {validationError && validationError !== '' && <ValidationMessage style={{whiteSpace: "pre-wrap"}}>{validationError}</ValidationMessage>}
 
       {showDeleteButton && <Button variant="negative" startIcon={<DeleteIcon />} onClick={handleDeleteClick}>Cancella keywords</Button>}
     </Grid>
